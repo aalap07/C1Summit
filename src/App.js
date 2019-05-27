@@ -9,24 +9,37 @@ function App() {
   const PARK_REQ = `https://developer.nps.gov/api/v1/parks?limit=150&api_key=${API_KEY}`;
 
   const[parks, setParks] = useState([]);
+  const[search, setSearch] = useState('');
+  const[query, setQuery] = useState('');
 
 
   useEffect(() => {
     getData();
-  }, [])
+  }, [query])
 
   const getData = async() => {
     
-    const response = await fetch(`https://developer.nps.gov/api/v1/parks?limit=10&api_key=${API_KEY}`);
+    const response = await fetch(`https://developer.nps.gov/api/v1/parks?limit=10&q=${query}&api_key=${API_KEY}`);
     const data = await response.json();
     console.log(data.data);
     setParks(data.data);
   }
 
+const updateSearch = e => {
+  setSearch(e.target.value);
+}
+
+const getSearch = e => {
+  e.preventDefault();
+  setQuery(search);
+  setSearch('');
+}
+
+
   return (
     <div className="App">
-      <form className="search-form">
-        <input className="search-bar" type="text" />
+      <form onSubmit={getSearch} className="search-form">
+        <input className="search-bar" type="text" value={search} onChange={updateSearch}/>
           <button className="search--button" type="submit">Search</button>
       </form>
       {parks.map(park => (
