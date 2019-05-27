@@ -3,22 +3,17 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  const API_KEY = 'StlUEfYJI8sIZBZPFGZSwb6boSG7aEbXUY9q4lsy';
+  const PARK_REQ = `https://developer.nps.gov/api/v1/parks?limit=150&api_key=${API_KEY}`;
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <form className="search-form">
+        <input className="search-bar" type="text" />
+          <button className="search--button" type="submit">Search</button>
+      </form>
     </div>
   );
 }
