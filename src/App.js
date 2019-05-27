@@ -1,4 +1,5 @@
 import React,{useEffect, useState} from 'react';
+import Park from './Park';
 import logo from './logo.svg';
 import './App.css';
 
@@ -7,7 +8,7 @@ function App() {
   const API_KEY = 'StlUEfYJI8sIZBZPFGZSwb6boSG7aEbXUY9q4lsy';
   const PARK_REQ = `https://developer.nps.gov/api/v1/parks?limit=150&api_key=${API_KEY}`;
 
-
+  const[parks, setParks] = useState([]);
 
 
   useEffect(() => {
@@ -16,9 +17,10 @@ function App() {
 
   const getData = async() => {
     
-    const response = await fetch(`https://developer.nps.gov/api/v1/parks?limit=50&api_key=${API_KEY}`);
+    const response = await fetch(`https://developer.nps.gov/api/v1/parks?limit=10&api_key=${API_KEY}`);
     const data = await response.json();
     console.log(data.data);
+    setParks(data.data);
   }
 
   return (
@@ -27,6 +29,14 @@ function App() {
         <input className="search-bar" type="text" />
           <button className="search--button" type="submit">Search</button>
       </form>
+      {parks.map(park => (
+        <Park 
+        title ={park.fullName}
+        location = {park.states}
+        parkCode = {park.parkCode}
+        />
+      ))}
+
     </div>
   );
 }
