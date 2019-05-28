@@ -1,10 +1,12 @@
 .park{
   background: lightblue;
   border-radius: 10px;
-  box-shadow: 0px 5px 20px rgb(71,71,71);
+  /* box-shadow: 0px 5px 20px rgb(71,71,71); */
   border-color: black;
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  min-width: 26%;
+  margin: 25px;
 }

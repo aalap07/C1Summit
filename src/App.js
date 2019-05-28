@@ -46,6 +46,7 @@ function App() {
               <input className="search-bar" type="text" value={search} onChange={updateSearch} />
               <button className="search-button" type="submit">Search</button>
             </form>
+            <div className="parks">
             {parks.map(park => (
               <Park
                 title={park.fullName}
@@ -54,7 +55,7 @@ function App() {
                
               />
             ))}
-
+</div>
           </div>
           );
         }
