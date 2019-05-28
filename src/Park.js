@@ -1,9 +1,10 @@
 import React from 'react';
+import style from './park.module.css';
 
 const Park = ({title, location, parkCode}) => {
     return (
-        <div>
-            <h1>{title}</h1>
+        <div className={style.park}>
+            <h2>{title}</h2>
             <p>{location}</p>
             <p> Parkcode: {parkCode} </p>
 
