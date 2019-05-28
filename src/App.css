@@ -23,6 +23,22 @@
   color: #61dafb;
 }
 
+.search-bar{
+  width: 25%;
+  padding: 8px;
+}
+
+.search-button{
+  background: lightblue;
+  border: none;
+  padding: 10px 20px;
+  color: black;
+}
+
+.parks{
+  display:flex;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -30,4 +46,5 @@
   to {
     transform: rotate(360deg);
   }
+  
 }
