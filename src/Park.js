@@ -3,19 +3,22 @@ import style from './park.module.css';
 import Panel from './components/panel/ExpansionPanel';
 
 const API_KEY = 'StlUEfYJI8sIZBZPFGZSwb6boSG7aEbXUY9q4lsy';
-const alerts = null;
 
 const Park = ({ title, location, parkCode }) => {
+    const [alerts, setAlerts] = useState([]);
+
     const getData = async () => {
         const alertResponse = await fetch(`https://developer.nps.gov/api/v1/alerts?parkCode=${parkCode}&api_key=${API_KEY}`);
+        console.log(parkCode);
         const alertData = await alertResponse.json();
-        console.log(alertData.data);
-      }
+        console.log(alertData);
+        setAlerts(alertData.data.length);
+    }
 
-      useEffect(() => {
+    useEffect(() => {
         getData();
-      }, [])
-    
+    }, [])
+
     return (
         <div className={style.park}>
             <h2>{title}</h2>
@@ -25,9 +28,15 @@ const Park = ({ title, location, parkCode }) => {
                 handleClick(e, parkCode)
             }} href="#">More info</button>
             <p></p>
+
+           
+
+
+            <h1>{alerts} alerts</h1>
+
             <Panel
                 parkCode={parkCode}
-               
+
             //Alerts, articles, events, news releases
             />
         </div>

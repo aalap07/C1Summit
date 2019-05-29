@@ -51,7 +51,7 @@ function App() {
             title={park.fullName}
             location={park.states}
             parkCode={park.parkCode}
-
+            
           />
         ))}
       </div>
