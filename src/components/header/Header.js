@@ -4,8 +4,8 @@ import './Header.css';
 const Header = (props) => {
     return (
         <div className="Header">
-            <header className="App__header">
-
+            <header className="App_header">
+                
             </header>
         </div>
     );

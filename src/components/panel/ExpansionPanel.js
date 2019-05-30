@@ -27,31 +27,49 @@ function SimpleExpansionPanel({parkCode, alerts}) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>Overview</Typography>
+          <Typography className={classes.heading}>Visitor Info</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-        
+         <p>Visitor Center(s):</p> 
             {parkCode}
-            {alerts}
+           
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
+
       <ExpansionPanel>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
+          aria-controls="panel1a-content"
+          id="panel1a-header"
         >
-          <Typography className={classes.heading}>Expansion Panel 2</Typography>
+          <Typography className={classes.heading}>Significant Information</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
+          There are  alerts for this park. 
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
+
+      <ExpansionPanel>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography className={classes.heading}>Learn More</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+          Nothing yet
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+
+
+     
       
     </div>
   );
