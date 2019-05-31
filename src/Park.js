@@ -7,6 +7,7 @@ const API_KEY = 'StlUEfYJI8sIZBZPFGZSwb6boSG7aEbXUY9q4lsy';
 const Park = ({ title, location, parkCode, desc }) => {
 
     const [visitors, setVisitors] = useState([]);
+
     const getVisitorData = async () => {
         const response = await fetch(`https://developer.nps.gov/api/v1/visitorcenters?q=${title}&limit=10&api_key=StlUEfYJI8sIZBZPFGZSwb6boSG7aEbXUY9q4lsy`);
         const data = await response.json();
@@ -20,9 +21,10 @@ const Park = ({ title, location, parkCode, desc }) => {
 
             <h2>{title}</h2>
             <p>{location} <br></br> Parkcode: {parkCode} </p>
-            {visitors.map(v => (
-                <p>{v.description}</p>
-            ))}
+
+           
+
+
             <button onClick={(e) => {
                 handleClick(e, parkCode)
             }} href="#">More info</button>
@@ -31,6 +33,7 @@ const Park = ({ title, location, parkCode, desc }) => {
             <Panel
                 parkCode={parkCode}
                 desc={desc}
+                visitors={visitors}
             //Alerts, articles, events, news releases
             />
         </div>

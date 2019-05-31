@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SimpleExpansionPanel({parkCode, alerts, desc}) {
+function SimpleExpansionPanel({parkCode, alerts, desc, visitors}) {
   const classes = useStyles();
 
   return (
@@ -49,8 +49,9 @@ function SimpleExpansionPanel({parkCode, alerts, desc}) {
         <ExpansionPanelDetails>
           <Typography>
          <p>Visitor Center(s):</p> 
-            {parkCode}
-           
+            {visitors.map(v => (
+                <p><li>{v.description}</li></p>
+            ))}
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
