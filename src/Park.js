@@ -7,19 +7,49 @@ const API_KEY = 'NbNl7f8G2SaGHJWLhTRShe9uw1GHgJetnXsxn2SA';
 const Park = ({ title, location, parkCode, desc }) => {
 
     const [visitors, setVisitors] = useState([]);
+    const [grounds, setGrounds] = useState([]);
+    const [alerts, setAlerts] = useState([]);
+
 
     const getVisitorData = async () => {
-        const response = await fetch(`https://developer.nps.gov/api/v1/visitorcenters?q=${title}&limit=10&api_key=${API_KEY}`);
+        const response = await fetch(`https://developer.nps.gov/api/v1/visitorcenters?parkCode=${parkCode}&limit=10&api_key=${API_KEY}`);
         const data = await response.json();
         setVisitors(data.data);
     }
+
+    const getAlertData = async () => {
+        const response = await fetch(`https://developer.nps.gov/api/v1/alerts?parkCode=${parkCode}&limit=10&api_key=${API_KEY}`);
+        const data = await response.json();
+        setAlerts(data.data);
+       
+    }
+
+
+    const getGroundsData = async () => {
+        const response = await fetch(`https://developer.nps.gov/api/v1/campgrounds?parkCode=${parkCode}&limit=10&api_key=${API_KEY}`);
+        const data = await response.json();
+        setGrounds(data.data);
+    }
+
+    const update = e => {
+        getVisitorData();
+        getGroundsData();
+      }
+    
+
     useEffect(() => {
         getVisitorData();
-      }, [])
+        getGroundsData();
+        getAlertData();
+    }, [])
+
+
+   
+
 
     return (
 
-        <div className={style.park}>
+        <div className={style.park} onChange={update}>
 
             <h2>{title}</h2>
             <p>{location} <br></br> Parkcode: {parkCode} </p>
@@ -32,6 +62,8 @@ const Park = ({ title, location, parkCode, desc }) => {
                 parkCode={parkCode}
                 desc={desc}
                 visitors={visitors}
+                grounds={grounds}
+                alerts={alerts}
             //Alerts, articles, events, news releases
             />
         </div>

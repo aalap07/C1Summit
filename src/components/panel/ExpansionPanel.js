@@ -16,13 +16,17 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SimpleExpansionPanel({parkCode, alerts, desc, visitors}) {
+function SimpleExpansionPanel({ parkCode, alerts, desc, visitors, grounds }) {
   const classes = useStyles();
+  var alertsEmpty = alerts.length === 0;
+  var groundsEmpty = grounds.length === 0;
+  var centersEmpty = visitors.length === 0;
+
 
   return (
     <div className={classes.root}>
 
-<ExpansionPanel>
+      <ExpansionPanel>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
@@ -32,9 +36,9 @@ function SimpleExpansionPanel({parkCode, alerts, desc, visitors}) {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-         {/* <p>{desc}</p>  */}
-            
-           
+            {/* <p>{desc}</p>  */}
+
+
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -48,10 +52,17 @@ function SimpleExpansionPanel({parkCode, alerts, desc, visitors}) {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-         <p align="left">Visitor Center(s):</p> 
+            <p align="left"><strong>Visitor Centers:</strong></p>
             {visitors.map(v => (
-                <p><li>{v.description}</li></p>
+              <p><li>{v.description}</li></p>
             ))}
+                        <p>{(centersEmpty ? "There are no visitor centers :(." : "")}</p>
+  <hr/>
+            <p align="left"><strong>Nearby Campgrounds:</strong></p>
+            {grounds.map(g => (
+              <p><li>{g.description}</li></p>
+            ))}
+            <p align="left">{(groundsEmpty ? "There are no nearby campgrounds :(." : "")}</p>
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -66,7 +77,17 @@ function SimpleExpansionPanel({parkCode, alerts, desc, visitors}) {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-          There are  alerts for this park. 
+
+            <p align="left"><strong>Alerts:</strong></p>
+            {alerts.map(a => (
+              <p align="left"><li>{a.description}</li></p>
+            ))}
+
+            <p>{(alertsEmpty ? "There are no alerts!" : "")}</p>
+
+
+            <hr />
+
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -81,14 +102,14 @@ function SimpleExpansionPanel({parkCode, alerts, desc, visitors}) {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-          Nothing yet
+            Nothing yet
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
 
 
-     
-      
+
+
     </div>
   );
 }
