@@ -2,18 +2,20 @@ import React, { useEffect, useState } from 'react';
 import style from './park.module.css';
 import Panel from './components/panel/ExpansionPanel';
 
-const API_KEY = 'StlUEfYJI8sIZBZPFGZSwb6boSG7aEbXUY9q4lsy';
+const API_KEY = 'NbNl7f8G2SaGHJWLhTRShe9uw1GHgJetnXsxn2SA';
 
 const Park = ({ title, location, parkCode, desc }) => {
 
     const [visitors, setVisitors] = useState([]);
 
     const getVisitorData = async () => {
-        const response = await fetch(`https://developer.nps.gov/api/v1/visitorcenters?q=${title}&limit=10&api_key=StlUEfYJI8sIZBZPFGZSwb6boSG7aEbXUY9q4lsy`);
+        const response = await fetch(`https://developer.nps.gov/api/v1/visitorcenters?q=${title}&limit=10&api_key=${API_KEY}`);
         const data = await response.json();
         setVisitors(data.data);
     }
-    getVisitorData();
+    useEffect(() => {
+        getVisitorData();
+      }, [])
 
     return (
 
@@ -21,10 +23,6 @@ const Park = ({ title, location, parkCode, desc }) => {
 
             <h2>{title}</h2>
             <p>{location} <br></br> Parkcode: {parkCode} </p>
-
-           
-
-
             <button onClick={(e) => {
                 handleClick(e, parkCode)
             }} href="#">More info</button>

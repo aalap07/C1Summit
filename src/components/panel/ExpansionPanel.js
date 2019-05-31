@@ -48,7 +48,7 @@ function SimpleExpansionPanel({parkCode, alerts, desc, visitors}) {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-         <p>Visitor Center(s):</p> 
+         <p align="left">Visitor Center(s):</p> 
             {visitors.map(v => (
                 <p><li>{v.description}</li></p>
             ))}

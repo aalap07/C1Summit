@@ -6,7 +6,7 @@ import Header from './components/header/Header'
 
 function App() {
 
-  const API_KEY = 'StlUEfYJI8sIZBZPFGZSwb6boSG7aEbXUY9q4lsy';
+  const API_KEY = 'NbNl7f8G2SaGHJWLhTRShe9uw1GHgJetnXsxn2SA';
   const [parks, setParks] = useState([]);
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('NULL');
