@@ -16,11 +16,15 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SimpleExpansionPanel({ parkCode, alerts, desc, visitors, grounds }) {
+function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, events, news }) {
   const classes = useStyles();
   var alertsEmpty = alerts.length === 0;
   var groundsEmpty = grounds.length === 0;
   var centersEmpty = visitors.length === 0;
+  var articlesEmpty = articles.length === 0;
+  var lotsOfArticles = articles.length > 10;
+  var eventsEmpty = events.length === 0;
+  var newsEmpty = news.length === 0;
 
 
   return (
@@ -32,11 +36,11 @@ function SimpleExpansionPanel({ parkCode, alerts, desc, visitors, grounds }) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>Description</Typography>
+          <Typography className={classes.heading}>Overview</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            {/* <p>{desc}</p>  */}
+            <p align="left">{desc}</p>
 
 
           </Typography>
@@ -48,21 +52,33 @@ function SimpleExpansionPanel({ parkCode, alerts, desc, visitors, grounds }) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>Visitor Info</Typography>
+          <Typography className={classes.heading}>While You're There</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
             <p align="left"><strong>Visitor Centers:</strong></p>
             {visitors.map(v => (
-              <p><li>{v.description}</li></p>
+              <p align="left"><li>{v.description}</li></p>
             ))}
-                        <p>{(centersEmpty ? "There are no visitor centers :(." : "")}</p>
-  <hr/>
+            <p>{(centersEmpty ? "There are no visitor centers :(." : "")}</p>
+            <hr />
             <p align="left"><strong>Nearby Campgrounds:</strong></p>
             {grounds.map(g => (
               <p><li>{g.description}</li></p>
             ))}
             <p align="left">{(groundsEmpty ? "There are no nearby campgrounds :(." : "")}</p>
+            
+            <hr />
+
+            <p align="left"><strong>Events:</strong></p>
+
+            {events.map(eve => (
+              <p align="left"> <li>{eve.description}</li> </p>
+            ))}
+            <p align="left">{(eventsEmpty ? "There are no events :(." : "")}</p>
+
+
+
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -73,7 +89,7 @@ function SimpleExpansionPanel({ parkCode, alerts, desc, visitors, grounds }) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>Significant Information</Typography>
+          <Typography className={classes.heading}>Things to Know</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
@@ -83,10 +99,32 @@ function SimpleExpansionPanel({ parkCode, alerts, desc, visitors, grounds }) {
               <p align="left"><li>{a.description}</li></p>
             ))}
 
-            <p>{(alertsEmpty ? "There are no alerts!" : "")}</p>
+            <p align="left">{(alertsEmpty ? "There are no alerts!" : "")}</p>
+
+            <hr />
+
+            <p align="left"><strong>Articles: {(lotsOfArticles ? " (Top 5)" : "")}</strong></p>
+
+            {articles.map(art => (
+              <p align="left"><li><a href={art.url} target="_blank">{art.title}</a></li></p>
+            ))}
+
+            <p align="left">{(articlesEmpty ? "There are no articles :(." : "")}</p>
 
 
             <hr />
+
+
+
+            <p align="left"><strong>News:</strong></p>
+
+            {news.map(n => (
+              <p align="left"><li><a href={n.url} target="_blank">{n.title}</a></li></p>))}
+            <p align="left">{(eventsEmpty ? "There is no news :(." : "")}</p>
+
+
+
+
 
           </Typography>
         </ExpansionPanelDetails>
