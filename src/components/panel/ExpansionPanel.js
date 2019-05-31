@@ -82,7 +82,7 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
-
+      
       <ExpansionPanel>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}

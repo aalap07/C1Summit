@@ -73,7 +73,7 @@ const Park = ({ title, location, parkCode, desc }) => {
         <div className={style.park}>
 
             <h2>{title}</h2>
-            <p>{location} <br></br> Parkcode: {parkCode} </p>
+            <p>{location} <br></br> Park code: {parkCode} </p>
             <button onClick={(e) => {
                 handleClick(e, parkCode)
             }} href="#">More info</button>
