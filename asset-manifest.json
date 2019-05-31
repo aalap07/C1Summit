@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/C1Summit/static/css/main.68bee5c9.chunk.css",
+    "main.js": "/C1Summit/static/js/main.62f20a9f.chunk.js",
+    "main.js.map": "/C1Summit/static/js/main.62f20a9f.chunk.js.map",
+    "runtime~main.js": "/C1Summit/static/js/runtime~main.442ff9e2.js",
+    "runtime~main.js.map": "/C1Summit/static/js/runtime~main.442ff9e2.js.map",
+    "static/js/2.96e9014b.chunk.js": "/C1Summit/static/js/2.96e9014b.chunk.js",
+    "static/js/2.96e9014b.chunk.js.map": "/C1Summit/static/js/2.96e9014b.chunk.js.map",
+    "index.html": "/C1Summit/index.html",
+    "precache-manifest.1c08e470a3ba342304e3e949d0f3d6c2.js": "/C1Summit/precache-manifest.1c08e470a3ba342304e3e949d0f3d6c2.js",
+    "service-worker.js": "/C1Summit/service-worker.js",
+    "static/css/main.68bee5c9.chunk.css.map": "/C1Summit/static/css/main.68bee5c9.chunk.css.map",
+    "static/media/logo.svg": "/C1Summit/static/media/logo.5d5d9eef.svg"
+  }
+}
