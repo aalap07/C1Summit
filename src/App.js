@@ -13,7 +13,6 @@ function App() {
 
   useEffect(() => {
     getData();
-   
   }, [query])
 
   
@@ -22,7 +21,6 @@ function App() {
     const data = await response.json();
     setParks(data.data);
   }
-
 
   const updateSearch = e => {
     setSearch(e.target.value);
@@ -35,7 +33,6 @@ function App() {
   }
 
   return (
-
 
     <div className="App">
 
@@ -54,7 +51,7 @@ function App() {
             title={park.fullName}
             location={park.states}
             parkCode={park.parkCode}
-            
+            desc={park.description}
           />
         ))}
         

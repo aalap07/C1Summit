@@ -16,11 +16,28 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SimpleExpansionPanel({parkCode, alerts}) {
+function SimpleExpansionPanel({parkCode, alerts, desc}) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
+
+<ExpansionPanel>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography className={classes.heading}>Description</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+         {/* <p>{desc}</p>  */}
+            
+           
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
       <ExpansionPanel>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
