@@ -71,14 +71,14 @@ const Park = ({ title, location, parkCode, desc }) => {
     return (
 
         <div className={style.park}>
-
-            <h2>{title}</h2>
-            <p>{location} <br></br> Park code: {parkCode} </p>
+        <img className={style.parkImage} src={"https://www.readingviaduct.org/wp-content/uploads/2018/06/Schaefer-Park-Playground-1024x675.jpg"} alt="Logo" />
+            
+            {/* <p>{location} <br></br> Park code: {parkCode} </p>
             <button onClick={(e) => {
                 handleClick(e, parkCode)
-            }} href="#">More info</button>
+            }} href="#">More info</button> */}
             <p></p>
-           
+            <h2 className={style.head}>{title}</h2>
             <Panel
                 desc={desc}
                 visitors={visitors}

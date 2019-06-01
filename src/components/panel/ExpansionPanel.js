@@ -5,6 +5,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import style from './panel.module.css';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,7 +30,6 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
 
   return (
     <div className={classes.root}>
-
       <ExpansionPanel>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
@@ -40,9 +40,10 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
+          <div className={style.infoPanel}> 
+
             <p align="left">{desc}</p>
-
-
+    </div>
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -82,7 +83,7 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
-      
+
       <ExpansionPanel>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
@@ -125,7 +126,6 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
 
 
 
-
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -144,7 +144,6 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
-
 
 
 
