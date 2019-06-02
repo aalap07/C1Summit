@@ -44,7 +44,6 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
         <ExpansionPanelDetails>
           <Typography>
             <div className={style.infoPanel}>
-
               <p align="left">{desc}</p>
             </div>
           </Typography>
@@ -60,6 +59,7 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
+          <div className={style.therePanel}>
             <p align="left"><strong>Visitor Centers:</strong></p>
             {visitors.map(v => (
               <p align="left"><li>{v.description}</li></p>
@@ -80,7 +80,7 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
               <p align="left"> <li>{eve.description}</li> </p>
             ))}
             <p align="left">{(eventsEmpty ? "There are no events :(." : "")}</p>
-
+              </div> 
 
 
           </Typography>
@@ -97,7 +97,7 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-
+          <div className={style.infoPanel}>
             <p align="left"><strong>Alerts:</strong></p>
             {alerts.map(a => (
               <p align="left"><li>{a.description}</li></p>
@@ -127,7 +127,7 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
             <p align="left">{(newsEmpty ? "There is no news :(." : "")}</p>
 
 
-
+              </div> 
 
           </Typography>
         </ExpansionPanelDetails>
@@ -143,7 +143,9 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
+          <div className={style.infoPanel}>
             Nothing yet
+            </div> 
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
