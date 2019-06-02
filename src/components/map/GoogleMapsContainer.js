@@ -13,8 +13,11 @@ class GoogleMapsContainer extends React.Component {
     this.state = {
       showingInfoWindow: false,
       activeMarker: {},
-      selectedPlace: {}
+      selectedPlace: {},
+      latV: 0,
+      longV: 0
     }
+  
     // binding this to event-handler functions
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClick = this.onMapClick.bind(this);
@@ -50,12 +53,12 @@ class GoogleMapsContainer extends React.Component {
         google = { this.props.google }
         onClick = { this.onMapClick }
         zoom = { 14 }
-        initialCenter = {{ lat: 39.648209, lng: -75.711185 }}
+        initialCenter = {{ lat: this.state.latV, lng: this.state.longV }}
       >
         <Marker
           onClick = { this.onMarkerClick }
           title = { 'Changing Colors Garage' }
-          position = {{ lat: 39.648209, lng: -75.711185 }}
+          position = {{ lat: this.state.latV, lng: this.state.longV }}
           name = { 'Changing Colors Garage' }
         />
         <InfoWindow

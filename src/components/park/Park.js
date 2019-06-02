@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import style from './park.module.css';
 import Panel from '../panel/ExpansionPanel';
 import GoogleMapsContainer from '../map/GoogleMapsContainer';
-import FontIcon from '@material-ui/FontIcon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 
-const API_KEY = 'YaGEFEV7tzcndoKa1RPyeIzKk49dqdUMq26URmFi';
+const API_KEY = 'caMDVw2WGfzDThcGxvCSbIneKuTkM5S8YYIhAQJ7';
 
-const Park = ({ title, location, parkCode, desc, dir }) => {
+const Park = ({ title, location, parkCode, desc, dir, states, latLong }) => {
 
     const [visitors, setVisitors] = useState([]);
     const [grounds, setGrounds] = useState([]);
@@ -14,7 +15,6 @@ const Park = ({ title, location, parkCode, desc, dir }) => {
     const [articles, setArticles] = useState([]);
     const [events, setEvents] = useState([]);
     const [news, setNews] = useState([]);
-
 
 
     const getArticleData = async () => {
@@ -62,6 +62,15 @@ const Park = ({ title, location, parkCode, desc, dir }) => {
         getNewsData();
     }, [])
 
+
+    const lat = (latLong[4] + latLong[5] + latLong[6] + latLong[7] + latLong[8] + latLong[9] +
+        latLong[10] + latLong[11] + latLong[12] + latLong[13]);
+        
+    const long = (latLong[22] + latLong[23] + latLong[24] + latLong[25] + latLong[26] + latLong[27] +
+        latLong[28] + latLong[29] + latLong[30] + latLong[31]);
+        
+        const latF = parseFloat(lat, 10);
+        const longF = parseFloat(long, 10);
     return (
 
 
@@ -69,9 +78,24 @@ const Park = ({ title, location, parkCode, desc, dir }) => {
             <br />
 
             <h2 className={style.head}>{title}</h2>
+            <div className={style.mapIcon}>
+                <FontAwesomeIcon
+                    color="white"
+                    icon={faMapMarkerAlt}
+                    size="3x"
 
-            <GoogleMapsContainer />
+                />
+                <div className={style.locLabel}>
 
+                    <p>{states}</p>
+                </div>
+            </div>
+
+
+            <GoogleMapsContainer
+                latV = {latF}
+                longV = {longF}
+            />
             <img className={style.parkImage} src={"https://www.readingviaduct.org/wp-content/uploads/2018/06/Schaefer-Park-Playground-1024x675.jpg"} alt="Logo" />
             <br /> <br />
             {/* <button onClick={(e) => {

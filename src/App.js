@@ -6,7 +6,7 @@ import Panel from './components/panel/ExpansionPanel';
 
 function App() {
 
-  const API_KEY = 'YaGEFEV7tzcndoKa1RPyeIzKk49dqdUMq26URmFi';
+  const API_KEY = 'caMDVw2WGfzDThcGxvCSbIneKuTkM5S8YYIhAQJ7';
   const [parks, setParks] = useState([]);
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('NULL');
@@ -64,6 +64,8 @@ function App() {
             parkCode={park.parkCode}
             desc={park.description}
             dir={park.directionsUrl}
+            states={park.states}
+            latLong={park.latLong}
           />
 
         ))}
