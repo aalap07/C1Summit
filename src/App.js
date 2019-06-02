@@ -16,7 +16,7 @@ function App() {
     getData();
   }, [query])
 
-  
+
   const getData = async () => {
     const response = await fetch(`https://developer.nps.gov/api/v1/parks?limit=10&q=${query}&api_key=${API_KEY}`);
     const data = await response.json();
@@ -41,7 +41,7 @@ function App() {
     const response = await fetch(`https://developer.nps.gov/api/v1/visitorcenters?parkCode=${pC}&limit=10&api_key=${API_KEY}`);
     const data = await response.json();
     setVisitors(data.data);
-}
+  }
 
   return (
 
@@ -65,7 +65,7 @@ function App() {
             desc={park.description}
             dir={park.directionsUrl}
           />
-          
+
         ))}
       </div>
     </div>

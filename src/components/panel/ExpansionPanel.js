@@ -7,7 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import style from './panel.module.css';
 
-
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
@@ -20,8 +19,6 @@ const useStyles = makeStyles(theme => ({
 
 function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, events, news }) {
   const classes = useStyles();
-  const [v, setV] = useState([]);
-  const API_KEY = 'LnBEa57ohnAwDYNopT9HR4U7pyAONJsSsXHb4KRh';
 
   var alertsEmpty = alerts.length === 0;
   var groundsEmpty = grounds.length === 0;
@@ -59,28 +56,28 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-          <div className={style.therePanel}>
-            <p align="left"><strong>Visitor Centers:</strong></p>
-            {visitors.map(v => (
-              <p align="left"><li>{v.description}</li></p>
+            <div className={style.therePanel}>
+              <p align="left"><strong>Visitor Centers:</strong></p>
+              {visitors.map(v => (
+                <p align="left" > <li>{v.description}</li></p>
             ))}
-            <p align="left">{(centersEmpty ? "There are no visitor centers :(." : "")}</p>
-            <hr />
-            <p align="left"><strong>Nearby Campgrounds:</strong></p>
-            {grounds.map(g => (
-              <p><li>{g.description}</li></p>
-            ))}
-            <p align="left">{(groundsEmpty ? "There are no nearby campgrounds :(." : "")}</p>
+              <p align="left">{(centersEmpty ? "There are no visitor centers :(." : "")}</p>
+              <hr />
+              <p align="left"><strong>Nearby Campgrounds:</strong></p>
+              {grounds.map(g => (
+                <p><li>{g.description}</li></p>
+              ))}
+              <p align="left">{(groundsEmpty ? "There are no nearby campgrounds :(." : "")}</p>
 
-            <hr />
+              <hr />
 
-            <p align="left"><strong>Events:</strong></p>
+              <p align="left"><strong>Events:</strong></p>
 
-            {events.map(eve => (
-              <p align="left"> <li>{eve.description}</li> </p>
-            ))}
-            <p align="left">{(eventsEmpty ? "There are no events :(." : "")}</p>
-              </div> 
+              {events.map(eve => (
+                <p align="left"> <li>{eve.description}</li> </p>
+              ))}
+              <p align="left">{(eventsEmpty ? "There are no events :(." : "")}</p>
+            </div>
 
 
           </Typography>
@@ -97,37 +94,35 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-          <div className={style.infoPanel}>
-            <p align="left"><strong>Alerts:</strong></p>
-            {alerts.map(a => (
-              <p align="left"><li>{a.description}</li></p>
-            ))}
+            <div className={style.infoPanel}>
+              <p align="left"><strong>Alerts:</strong></p>
+              {alerts.map(a => (
+                <p align="left"><li>{a.description}</li></p>
+              ))}
 
-            <p align="left">{(alertsEmpty ? "There are no alerts!" : "")}</p>
+              <p align="left">{(alertsEmpty ? "There are no alerts!" : "")}</p>
 
-            <hr />
+              <hr />
 
-            <p align="left"><strong>Articles: {(lotsOfArticles ? " (Top 5)" : "")}</strong></p>
+              <p align="left"><strong>Articles: {(lotsOfArticles ? " (Top 5)" : "")}</strong></p>
 
-            {articles.map(art => (
-              <p align="left"><li><a href={art.url} target="_blank">{art.title}</a></li></p>
-            ))}
+              {articles.map(art => (
+                <p align="left"><li><a href={art.url} target="_blank">{art.title}</a></li></p>
+              ))}
 
-            <p align="left">{(articlesEmpty ? "There are no articles :(." : "")}</p>
-
-
-            <hr />
+              <p align="left">{(articlesEmpty ? "There are no articles :(." : "")}</p>
 
 
+              <hr />
 
-            <p align="left"><strong>News:</strong></p>
+              <p align="left"><strong>News:</strong></p>
 
-            {news.map(n => (
-              <p align="left"><li><a href={n.url} target="_blank">{n.title}</a></li></p>))}
-            <p align="left">{(newsEmpty ? "There is no news :(." : "")}</p>
+              {news.map(n => (
+                <p align="left"><li><a href={n.url} target="_blank">{n.title}</a></li></p>))}
+              <p align="left">{(newsEmpty ? "There is no news :(." : "")}</p>
 
 
-              </div> 
+            </div>
 
           </Typography>
         </ExpansionPanelDetails>
@@ -143,9 +138,9 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-          <div className={style.infoPanel}>
-            Nothing yet
-            </div> 
+            <div className={style.infoPanel}>
+              Nothing yet
+            </div>
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
