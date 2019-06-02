@@ -63,6 +63,7 @@ function App() {
             location={park.states}
             parkCode={park.parkCode}
             desc={park.description}
+            dir={park.directionsUrl}
           />
           
         ))}

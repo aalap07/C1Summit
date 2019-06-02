@@ -4,7 +4,7 @@ import Panel from './components/panel/ExpansionPanel';
 
 const API_KEY = 'YaGEFEV7tzcndoKa1RPyeIzKk49dqdUMq26URmFi';
 
-const Park = ({ title, location, parkCode, desc }) => {
+const Park = ({ title, location, parkCode, desc, dir }) => {
 
     const [visitors, setVisitors] = useState([]);
     const [grounds, setGrounds] = useState([]);
@@ -64,11 +64,10 @@ const Park = ({ title, location, parkCode, desc }) => {
 
         <div className={style.park}>
             <img className={style.parkImage} src={"https://www.readingviaduct.org/wp-content/uploads/2018/06/Schaefer-Park-Playground-1024x675.jpg"} alt="Logo" />
-
-            {/* <p>{location} <br></br> Park code: {parkCode} </p>
+        <br/>
             <button onClick={(e) => {
-                handleClick(e, parkCode)
-            }} href="#">More info</button> */}
+                handleClick(e, parkCode, dir)
+            }}>Directions</button>
             <p></p>
             <h2 className={style.head}>{title}</h2>
             {/* <DataFetcher
@@ -90,9 +89,9 @@ const Park = ({ title, location, parkCode, desc }) => {
     );
 }
 
-function handleClick(e, parkCode) {
+function handleClick(e, parkCode, dir) {
     e.preventDefault();
-    var win = window.open(`https://www.nps.gov/${parkCode}/index.htm`, '_blank');
+    var win = window.open(`${dir}`, '_blank');
     win.focus();
 
 }
