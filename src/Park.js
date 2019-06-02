@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import style from './park.module.css';
 import Panel from './components/panel/ExpansionPanel';
 
-const API_KEY = 'NbNl7f8G2SaGHJWLhTRShe9uw1GHgJetnXsxn2SA';
+const API_KEY = 'YaGEFEV7tzcndoKa1RPyeIzKk49dqdUMq26URmFi';
 
 const Park = ({ title, location, parkCode, desc }) => {
 
@@ -51,14 +51,6 @@ const Park = ({ title, location, parkCode, desc }) => {
         setNews(data.data);
     }
 
-
-
-    // const update = e => {
-    //     getVisitorData();
-    //     getGroundsData();
-    //   }
-    
-
     useEffect(() => {
         getVisitorData();
         getGroundsData();
@@ -71,16 +63,21 @@ const Park = ({ title, location, parkCode, desc }) => {
     return (
 
         <div className={style.park}>
-        <img className={style.parkImage} src={"https://www.readingviaduct.org/wp-content/uploads/2018/06/Schaefer-Park-Playground-1024x675.jpg"} alt="Logo" />
-            
+            <img className={style.parkImage} src={"https://www.readingviaduct.org/wp-content/uploads/2018/06/Schaefer-Park-Playground-1024x675.jpg"} alt="Logo" />
+
             {/* <p>{location} <br></br> Park code: {parkCode} </p>
             <button onClick={(e) => {
                 handleClick(e, parkCode)
             }} href="#">More info</button> */}
             <p></p>
             <h2 className={style.head}>{title}</h2>
+            {/* <DataFetcher
+                parkCode = {parkCode}
+            /> */}
+
             <Panel
                 desc={desc}
+                parkCode={parkCode}
                 visitors={visitors}
                 grounds={grounds}
                 alerts={alerts}

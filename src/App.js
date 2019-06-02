@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import Park from './Park';
-import logo from './logo.svg';
 import './App.css';
-import Header from './components/header/Header'
+import Panel from './components/panel/ExpansionPanel';
+
 
 function App() {
 
-  const API_KEY = 'NbNl7f8G2SaGHJWLhTRShe9uw1GHgJetnXsxn2SA';
+  const API_KEY = 'YaGEFEV7tzcndoKa1RPyeIzKk49dqdUMq26URmFi';
   const [parks, setParks] = useState([]);
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('NULL');
+  const [visitors, setVisitors] = useState([]);
 
   useEffect(() => {
     getData();
@@ -23,15 +24,24 @@ function App() {
   }
 
   const updateSearch = e => {
-    setSearch(e.target.value);
+    const toSet = e.target.value;
+    setSearch(toSet);
   }
 
   const getSearch = e => {
     e.preventDefault();
     setQuery(search);
     setSearch('');
+    setParks([]);
   }
- 
+
+  var pC;
+
+  const getVisitorData = async () => {
+    const response = await fetch(`https://developer.nps.gov/api/v1/visitorcenters?parkCode=${pC}&limit=10&api_key=${API_KEY}`);
+    const data = await response.json();
+    setVisitors(data.data);
+}
 
   return (
 
@@ -54,8 +64,8 @@ function App() {
             parkCode={park.parkCode}
             desc={park.description}
           />
+          
         ))}
-        
       </div>
     </div>
   );
