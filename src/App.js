@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Park from './Park';
+import Park from './components/park/Park';
 import './App.css';
 import Panel from './components/panel/ExpansionPanel';
 

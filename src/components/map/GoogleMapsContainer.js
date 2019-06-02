@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleApiWrapper, InfoWindow, Map, Marker } from '../node_modules/google-maps-react';
+import { GoogleApiWrapper, InfoWindow, Map, Marker } from '../../../node_modules/google-maps-react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { typography } from '@material-ui/core/styles';
@@ -36,10 +36,11 @@ class GoogleMapsContainer extends React.Component {
   }
   render() {
     const style = {
-      width: '25vw',
-      height: '30vh',
+      width: '20vw',
+      height: '25vh',
       'marginLeft': 'auto',
-      'marginRight': '88%'
+      'marginTop': '1%',
+      'marginRight': '77%'
     }
     return (
       <Map

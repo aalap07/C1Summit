@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import style from './park.module.css';
-import Panel from './components/panel/ExpansionPanel';
-import GoogleMapsContainer from './GoogleMapsContainer';
+import Panel from '../panel/ExpansionPanel';
+import GoogleMapsContainer from '../map/GoogleMapsContainer';
+import FontIcon from '@material-ui/FontIcon';
 
 const API_KEY = 'YaGEFEV7tzcndoKa1RPyeIzKk49dqdUMq26URmFi';
 
@@ -65,16 +66,18 @@ const Park = ({ title, location, parkCode, desc, dir }) => {
 
 
         <div className={style.park}>
-                        <GoogleMapsContainer/>
+            <br />
+
+            <h2 className={style.head}>{title}</h2>
+
+            <GoogleMapsContainer />
 
             <img className={style.parkImage} src={"https://www.readingviaduct.org/wp-content/uploads/2018/06/Schaefer-Park-Playground-1024x675.jpg"} alt="Logo" />
-
-            <br />
-            <button onClick={(e) => {
+            <br /> <br />
+            {/* <button onClick={(e) => {
                 handleClick(e, parkCode, dir)
-            }}>Directions</button>
+            }}>Directions</button> */}
             <p></p>
-            <h2 className={style.head}>{title}</h2>
             <Panel
                 desc={desc}
                 parkCode={parkCode}
@@ -85,6 +88,7 @@ const Park = ({ title, location, parkCode, desc, dir }) => {
                 events={events}
                 news={news}
             />
+
 
         </div>
     );
