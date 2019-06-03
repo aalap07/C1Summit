@@ -77,6 +77,8 @@ const Park = ({ title, location, parkCode, desc, dir, states, latLong }) => {
         const response = await fetch(`https://developer.nps.gov/api/v1/people?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
         const data = await response.json();
         setPeople(data.data);
+        console.log(data.data);
+
     }
 
     useEffect(() => {

@@ -145,10 +145,10 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
           <div className={style.infoPanel}>
               <p align="left"><strong>Lesson Plans:</strong></p>
               {lessons.map(l => (
-                <p align="left"><li>{l.questionObjective}</li></p>
+                <p align="left"><li>{l.questionobjective}</li></p>
               ))}
 
-              <p align="left">{(lessonsEmpty ? "There are no lessons. :("  : "" )}</p>
+              <p align="left">{(lessonsEmpty ? "There are no lesson plans. :("  : "" )}</p>
 
               <hr />
 
@@ -164,7 +164,7 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
 
               <p align="left"><strong>Relevant People:</strong></p>
               {people.map(person => (
-                <p align="left"><li>{person.description}</li></p>
+                <p align="left"><li>{person.listingdescription}</li></p>
               ))}
 
               <p align="left">{(peopleEmpty ? "There are no relevant people. :("  : "" )}</p>
