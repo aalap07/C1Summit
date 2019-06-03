@@ -64,7 +64,7 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
               <p align="left"><strong>Visitor Centers:</strong></p>
               {visitors.map(v => (
                 <p align="left" > <li>{v.description}</li></p>
-            ))}
+              ))}
               <p align="left">{(centersEmpty ? "There are no visitor centers :(." : "")}</p>
               <hr />
               <p align="left"><strong>Nearby Campgrounds:</strong></p>
@@ -142,32 +142,31 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-          <div className={style.infoPanel}>
-              <p align="left"><strong>Lesson Plans:</strong></p>
+            <div className={style.infoPanel}>
+
+              <p align="left"><strong>{(lessonsEmpty ? "" : "Lesson Plans:")}</strong></p>
+
               {lessons.map(l => (
                 <p align="left"><li>{l.questionobjective}</li></p>
               ))}
 
-              <p align="left">{(lessonsEmpty ? "There are no lesson plans. :("  : "" )}</p>
+              {lessonsEmpty ? "" : <hr />}
 
-              <hr />
 
-              <p align="left"><strong>Places:</strong></p>
+
+              <p align="left"><strong>{(placesEmpty ? "" : "Places:")}</strong></p>
               {places.map(place => (
                 <p align="left"><li>{place.listingdescription}</li></p>
               ))}
 
-              <p align="left">{(placesEmpty ? "There are no places. :("  : "" )}</p>
-            
+              {peopleEmpty ? "" : <hr />}
 
-              <hr />
 
-              <p align="left"><strong>Relevant People:</strong></p>
+              <p align="left"><strong>{(peopleEmpty ? "" : "Relevant People:")}</strong></p>
               {people.map(person => (
                 <p align="left"><li>{person.listingdescription}</li></p>
               ))}
 
-              <p align="left">{(peopleEmpty ? "There are no relevant people. :("  : "" )}</p>
 
             </div>
 
