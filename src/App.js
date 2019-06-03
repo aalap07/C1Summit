@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Park from './components/park/Park';
 import './App.css';
 import Panel from './components/panel/ExpansionPanel';
-
+import Header from './components/header/Header'
 
 function App() {
 
@@ -47,12 +47,12 @@ function App() {
 
     <div className="App">
 
-      {/* <Header /> */}
-
-      <h1>Welcome to the National Park Service Kiosk </h1>
+      <Header />
+    <br/><br/><br/><br/><br/>
+      <h1 className="titleText">Welcome to the National Park Service Kiosk </h1>
 
       <form onSubmit={getSearch} className="search-form">
-        <input className="search-bar" type="text" placeholder="Enter a park..." value={search} onChange={updateSearch} />
+        <input className="search-bar" type="text" placeholder="Enter a park name..." value={search} onChange={updateSearch} />
         <button className="search-button" type="submit">Search</button>
       </form>
 

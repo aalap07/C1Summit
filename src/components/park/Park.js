@@ -102,7 +102,7 @@ const Park = ({ title, location, parkCode, desc, dir, states, latLong }) => {
     var longVal = parseFloat(long, 10);
     return (
 
-
+        
         <div className={style.park}>
             <br />
 

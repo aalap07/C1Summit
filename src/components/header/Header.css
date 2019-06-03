@@ -1,14 +1,16 @@
 .Header .App_header {
    /* background-image: url("/src/header-bg.jpg");     */
-    background-color: gray;
+    background-color: black;
     top:0px;
-    opacity: 0.2;
+    opacity: 0.85;
     position: fixed;
     left: 0%;
-    height: 90%;
+    height: 10%;
     width: 100%;
-    transition: all .3s ease-out; 
-  
+     background-image: url("../../../src/nps.png");
+     background-position-x: 180px;
+     background-position-y: 20px;
+     background-repeat: no-repeat;
   }
 
   
