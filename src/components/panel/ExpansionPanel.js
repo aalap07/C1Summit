@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, events, news }) {
+function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, events, news, lessons, places, people }) {
   const classes = useStyles();
 
   var alertsEmpty = alerts.length === 0;
@@ -27,6 +27,10 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
   var lotsOfArticles = articles.length > 10;
   var eventsEmpty = events.length === 0;
   var newsEmpty = news.length === 0;
+  var lessonsEmpty = lessons.length === 0;
+  var placesEmpty = places.length === 0;
+  var peopleEmpty = people.length === 0;
+
 
   return (
     <div className={classes.root}>
@@ -134,13 +138,39 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>Learn More</Typography>
+          <Typography className={classes.heading}>Educational Information</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            <div className={style.infoPanel}>
-              Nothing yet
+          <div className={style.infoPanel}>
+              <p align="left"><strong>Lesson Plans:</strong></p>
+              {lessons.map(l => (
+                <p align="left"><li>{l.questionObjective}</li></p>
+              ))}
+
+              <p align="left">{(lessonsEmpty ? "There are no lessons. :("  : "" )}</p>
+
+              <hr />
+
+              <p align="left"><strong>Places:</strong></p>
+              {places.map(place => (
+                <p align="left"><li>{place.listingdescription}</li></p>
+              ))}
+
+              <p align="left">{(placesEmpty ? "There are no places. :("  : "" )}</p>
+            
+
+              <hr />
+
+              <p align="left"><strong>Relevant People:</strong></p>
+              {people.map(person => (
+                <p align="left"><li>{person.description}</li></p>
+              ))}
+
+              <p align="left">{(peopleEmpty ? "There are no relevant people. :("  : "" )}</p>
+
             </div>
+
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>

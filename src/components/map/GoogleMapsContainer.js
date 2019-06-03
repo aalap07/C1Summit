@@ -8,7 +8,8 @@ import style from './map.module.css';
 
 const API = "AIzaSyB9Kqn59pkizr4_mHqO8D2EsqP1j73i-zI";
 class GoogleMapsContainer extends React.Component {
-  constructor(props) {
+  constructor(props, lat, long) {
+   
     super(props);
     this.state = {
       showingInfoWindow: false,
@@ -85,5 +86,5 @@ class GoogleMapsContainer extends React.Component {
   }
 }
 export default GoogleApiWrapper({
-    api: (process.env.API)
+    api: API
 })(GoogleMapsContainer)

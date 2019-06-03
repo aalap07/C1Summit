@@ -15,6 +15,10 @@ const Park = ({ title, location, parkCode, desc, dir, states, latLong }) => {
     const [articles, setArticles] = useState([]);
     const [events, setEvents] = useState([]);
     const [news, setNews] = useState([]);
+    const [lessons, setLessons] = useState([]);
+    const [places, setPlaces] = useState([]);
+    const [people, setPeople] = useState([]);
+    const [image, setImage] = useState('https://media.graytvinc.com/images/810*455/1280x720_80228C00-QKCEF2.jpg');
 
 
     const getArticleData = async () => {
@@ -53,6 +57,28 @@ const Park = ({ title, location, parkCode, desc, dir, states, latLong }) => {
         setNews(data.data);
     }
 
+    const getLessonsData = async () => {
+        const response = await fetch(`https://developer.nps.gov/api/v1/lessonplans?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
+        const data = await response.json();
+        setLessons(data.data);
+    }
+
+    const getPlacesData = async () => {
+        const response = await fetch(`https://developer.nps.gov/api/v1/places?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
+        const data = await response.json();
+        setPlaces(data.data);
+        if (parseInt(data.total, 10) > 0) {
+            setImage(data.data[0].listingimage.url);
+          
+        }
+    }
+
+    const getPeopleData = async () => {
+        const response = await fetch(`https://developer.nps.gov/api/v1/people?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
+        const data = await response.json();
+        setPeople(data.data);
+    }
+
     useEffect(() => {
         getVisitorData();
         getGroundsData();
@@ -60,17 +86,18 @@ const Park = ({ title, location, parkCode, desc, dir, states, latLong }) => {
         getArticleData();
         getEventsData();
         getNewsData();
+        getLessonsData();
+        getPlacesData();
+        getPeopleData();
     }, [])
 
 
-    const lat = (latLong[4] + latLong[5] + latLong[6] + latLong[7] + latLong[8] + latLong[9] +
-        latLong[10] + latLong[11] + latLong[12] + latLong[13]);
-        
-    const long = (latLong[22] + latLong[23] + latLong[24] + latLong[25] + latLong[26] + latLong[27] +
-        latLong[28] + latLong[29] + latLong[30] + latLong[31]);
-        
-        const latF = parseFloat(lat, 10);
-        const longF = parseFloat(long, 10);
+    const lat = latLong.substring(4, 14);
+
+    const long = latLong.substring(22, 32);
+
+    var latVal = parseFloat(lat, 10);
+    var longVal = parseFloat(long, 10);
     return (
 
 
@@ -93,10 +120,11 @@ const Park = ({ title, location, parkCode, desc, dir, states, latLong }) => {
 
 
             <GoogleMapsContainer
-                latV = {latF}
-                longV = {longF}
+                latV={latVal}
+                longV={longVal}
             />
-            <img className={style.parkImage} src={"https://www.readingviaduct.org/wp-content/uploads/2018/06/Schaefer-Park-Playground-1024x675.jpg"} alt="Logo" />
+
+            <img className={style.parkImage} src={image} alt="Image" />
             <br /> <br />
             {/* <button onClick={(e) => {
                 handleClick(e, parkCode, dir)
@@ -111,6 +139,10 @@ const Park = ({ title, location, parkCode, desc, dir, states, latLong }) => {
                 articles={articles}
                 events={events}
                 news={news}
+                lessons={lessons}
+                places={places}
+                people={people}
+
             />
 
 
