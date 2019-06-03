@@ -3,8 +3,6 @@ import { GoogleApiWrapper, InfoWindow, Map, Marker } from '../../../node_modules
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { typography } from '@material-ui/core/styles';
-import style from './map.module.css';
-
 
 const API = "AIzaSyB9Kqn59pkizr4_mHqO8D2EsqP1j73i-zI";
 class GoogleMapsContainer extends React.Component {
