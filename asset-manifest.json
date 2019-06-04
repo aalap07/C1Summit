@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/C1Summit/static/css/main.81aa6631.chunk.css",
-    "main.js": "/C1Summit/static/js/main.65cfa70c.chunk.js",
-    "main.js.map": "/C1Summit/static/js/main.65cfa70c.chunk.js.map",
+    "main.css": "/C1Summit/static/css/main.c89e4197.chunk.css",
+    "main.js": "/C1Summit/static/js/main.e4f37f5c.chunk.js",
+    "main.js.map": "/C1Summit/static/js/main.e4f37f5c.chunk.js.map",
     "runtime~main.js": "/C1Summit/static/js/runtime~main.442ff9e2.js",
     "runtime~main.js.map": "/C1Summit/static/js/runtime~main.442ff9e2.js.map",
     "static/js/2.abd612c9.chunk.js": "/C1Summit/static/js/2.abd612c9.chunk.js",
     "static/js/2.abd612c9.chunk.js.map": "/C1Summit/static/js/2.abd612c9.chunk.js.map",
     "index.html": "/C1Summit/index.html",
-    "precache-manifest.276a5d8b018961da43da0c9659de325d.js": "/C1Summit/precache-manifest.276a5d8b018961da43da0c9659de325d.js",
+    "precache-manifest.492fe3cc05a9180cfd17705296588adb.js": "/C1Summit/precache-manifest.492fe3cc05a9180cfd17705296588adb.js",
     "service-worker.js": "/C1Summit/service-worker.js",
-    "static/css/main.81aa6631.chunk.css.map": "/C1Summit/static/css/main.81aa6631.chunk.css.map"
+    "static/css/main.c89e4197.chunk.css.map": "/C1Summit/static/css/main.c89e4197.chunk.css.map"
   }
 }
