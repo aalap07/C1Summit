@@ -92,9 +92,13 @@ const Park = ({ title, location, parkCode, desc, dir, states, latLong }) => {
     }, [])
 
     const lat = latLong.substring(4, 15);
-
-    
-    const long = latLong.substring(22, 33);
+    var long = 0;
+    if (latLong[21] === "-"){
+         long = latLong.substring(21,33);
+    }
+    else{
+         long = latLong.substring(22, 33);
+    }
     
 
     var latVal = parseFloat(lat, 10);
