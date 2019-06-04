@@ -77,8 +77,6 @@ const Park = ({ title, location, parkCode, desc, dir, states, latLong }) => {
         const response = await fetch(`https://developer.nps.gov/api/v1/people?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
         const data = await response.json();
         setPeople(data.data);
-        console.log(data.data);
-
     }
 
     useEffect(() => {
@@ -93,16 +91,18 @@ const Park = ({ title, location, parkCode, desc, dir, states, latLong }) => {
         getPeopleData();
     }, [])
 
+    const lat = latLong.substring(4, 15);
 
-    const lat = latLong.substring(4, 14);
-
-    const long = latLong.substring(22, 32);
+    
+    const long = latLong.substring(22, 33);
+    
 
     var latVal = parseFloat(lat, 10);
     var longVal = parseFloat(long, 10);
+    console.log(longVal);
     return (
 
-        
+
         <div className={style.park}>
             <br />
 
@@ -120,12 +120,12 @@ const Park = ({ title, location, parkCode, desc, dir, states, latLong }) => {
                 </div>
             </div>
 
-
             <GoogleMapsContainer
-                latV={latVal}
-                longV={longVal}
+                lat={latVal}
+                long={longVal}
+                
             />
-
+            
             <img className={style.parkImage} src={image} alt="Image" />
             <br /> <br />
             {/* <button onClick={(e) => {
