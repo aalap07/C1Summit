@@ -67,20 +67,25 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
               ))}
               <p align="left">{(centersEmpty ? "There are no visitor centers :(." : "")}</p>
               <hr />
+
+
               <p align="left"><strong>Nearby Campgrounds:</strong></p>
               {grounds.map(g => (
-                <p><li>{g.description}</li></p>
+                <p align="left"><li>{g.description}</li></p>
               ))}
               <p align="left">{(groundsEmpty ? "There are no nearby campgrounds :(." : "")}</p>
 
-              <hr />
+              {eventsEmpty ? "" : <hr />}
 
-              <p align="left"><strong>Events:</strong></p>
-
+              <p align="left"><strong>{(eventsEmpty ? "" : "Events:")}</strong></p>
               {events.map(eve => (
                 <p align="left"> <li>{eve.description}</li> </p>
               ))}
-              <p align="left">{(eventsEmpty ? "There are no events :(." : "")}</p>
+
+
+
+
+
             </div>
 
 
@@ -99,6 +104,7 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
         <ExpansionPanelDetails>
           <Typography>
             <div className={style.infoPanel}>
+
               <p align="left"><strong>Alerts:</strong></p>
               {alerts.map(a => (
                 <p align="left"><li>{a.description}</li></p>
@@ -117,13 +123,15 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
               <p align="left">{(articlesEmpty ? "There are no articles :(." : "")}</p>
 
 
-              <hr />
+              {newsEmpty ? "" : <hr />}
 
-              <p align="left"><strong>News:</strong></p>
-
+              <p align="left"><strong>{(newsEmpty ? "" : "News:")}</strong></p>
               {news.map(n => (
-                <p align="left"><li><a href={n.url} target="_blank">{n.title}</a></li></p>))}
-              <p align="left">{(newsEmpty ? "There is no news :(." : "")}</p>
+                <p align="left"><li><a href={n.url} target="_blank">{n.title}</a></li></p>))
+              }
+
+
+
 
 
             </div>
@@ -167,7 +175,7 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
                 <p align="left"><li>{person.listingdescription}</li></p>
               ))}
 
-
+                <p>{lessonsEmpty && placesEmpty && peopleEmpty ? "There is no educational information for this park." : ""}</p>
             </div>
 
           </Typography>
