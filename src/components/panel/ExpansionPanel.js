@@ -66,20 +66,21 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
                 <p align="left" > <li>{v.description}</li></p>
               ))}
               <p align="left">{(centersEmpty ? "There are no visitor centers :(." : "")}</p>
-              <hr />
+              
+              {groundsEmpty ? "" : <hr/> }
 
 
-              <p align="left"><strong>Nearby Campgrounds:</strong></p>
+              <p align="left"><strong>{groundsEmpty ? "" : "Nearby Campgrounds"}</strong></p>
               {grounds.map(g => (
                 <p align="left"><li>{g.description}</li></p>
               ))}
-              <p align="left">{(groundsEmpty ? "There are no nearby campgrounds :(." : "")}</p>
 
               {eventsEmpty ? "" : <hr />}
 
               <p align="left"><strong>{(eventsEmpty ? "" : "Events:")}</strong></p>
               {events.map(eve => (
-                <p align="left"> <li>{eve.description}</li> </p>
+                
+                <p align="left"> <li>{eve.description.replace(/(<([^>]+)>)/ig,'')}</li> </p>
               ))}
 
 
