@@ -7,7 +7,7 @@ import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 
 const API_KEY = 'caMDVw2WGfzDThcGxvCSbIneKuTkM5S8YYIhAQJ7';
 
-const Park = ({ title, location, parkCode, desc, dir, states, latLong }) => {
+const Park = ({ title, location, parkCode, desc, dir, states, latLong, images}) => {
 
     const [visitors, setVisitors] = useState([]);
     const [grounds, setGrounds] = useState([]);
@@ -18,7 +18,7 @@ const Park = ({ title, location, parkCode, desc, dir, states, latLong }) => {
     const [lessons, setLessons] = useState([]);
     const [places, setPlaces] = useState([]);
     const [people, setPeople] = useState([]);
-    const [image, setImage] = useState('https://media.graytvinc.com/images/810*455/1280x720_80228C00-QKCEF2.jpg');
+    const [image, setImage] = useState(images[0].url);
 
 
     const getArticleData = async () => {
@@ -67,10 +67,6 @@ const Park = ({ title, location, parkCode, desc, dir, states, latLong }) => {
         const response = await fetch(`https://developer.nps.gov/api/v1/places?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
         const data = await response.json();
         setPlaces(data.data);
-        if (parseInt(data.total, 10) > 0) {
-            setImage(data.data[0].listingimage.url);
-          
-        }
     }
 
     const getPeopleData = async () => {
@@ -97,13 +93,13 @@ const Park = ({ title, location, parkCode, desc, dir, states, latLong }) => {
          long = latLong.substring(21,33);
     }
     else{
-         long = latLong.substring(22, 33);
+         long = latLong.substring(22,33);
     }
     
-
+    console.log(latLong)
     var latVal = parseFloat(lat, 10);
     var longVal = parseFloat(long, 10);
-    console.log(longVal);
+    console.log(latVal + " " + longVal)
     return (
 
 
@@ -132,9 +128,7 @@ const Park = ({ title, location, parkCode, desc, dir, states, latLong }) => {
             
             <img className={style.parkImage} src={image} alt="Image" />
             <br /> <br />
-            {/* <button onClick={(e) => {
-                handleClick(e, parkCode, dir)
-            }}>Directions</button> */}
+            
             <p></p>
             <Panel
                 desc={desc}

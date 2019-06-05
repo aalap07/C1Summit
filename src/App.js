@@ -18,9 +18,13 @@ function App() {
 
 
   const getData = async () => {
-    const response = await fetch(`https://developer.nps.gov/api/v1/parks?limit=10&q=${query}&api_key=${API_KEY}`);
+    const response = await fetch(`https://developer.nps.gov/api/v1/parks?limit=100&q=${query}&fields=images&api_key=${API_KEY}`);
     const data = await response.json();
-    setParks(data.data);
+    var array = [];
+    {data.data.map(curr => (
+      curr.fullName.toUpperCase().startsWith(query.toUpperCase()) ? array.push(curr) : array = array
+    ))}
+    setParks(array);
   }
 
   const updateSearch = e => {
@@ -33,14 +37,6 @@ function App() {
     setQuery(search);
     setSearch('');
     setParks([]);
-  }
-
-  var pC;
-
-  const getVisitorData = async () => {
-    const response = await fetch(`https://developer.nps.gov/api/v1/visitorcenters?parkCode=${pC}&limit=10&api_key=${API_KEY}`);
-    const data = await response.json();
-    setVisitors(data.data);
   }
 
   return (
@@ -65,6 +61,7 @@ function App() {
             desc={park.description}
             dir={park.directionsUrl}
             states={park.states}
+            images={park.images}
             latLong={park.latLong}
           />
 
