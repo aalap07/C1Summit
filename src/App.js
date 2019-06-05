@@ -6,7 +6,7 @@ import Header from './components/header/Header'
 
 function App() {
 
-  const API_KEY = 'caMDVw2WGfzDThcGxvCSbIneKuTkM5S8YYIhAQJ7';
+  const API_KEY = 'R0waPIU3Z36hgQSuWnvyWVXEMzn8iXPpng63M5Le';
   const [parks, setParks] = useState([]);
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('NULL');
@@ -14,29 +14,41 @@ function App() {
 
   useEffect(() => {
     getData();
+
   }, [query])
 
 
   const getData = async () => {
-    const response = await fetch(`https://developer.nps.gov/api/v1/parks?limit=100&q=${query}&fields=images&api_key=${API_KEY}`);
+    const response = await fetch(`https://developer.nps.gov/api/v1/parks?limit=10&q=${query}&fields=images&api_key=${API_KEY}`);
     const data = await response.json();
     var array = [];
-    {data.data.map(curr => (
-      curr.fullName.toUpperCase().startsWith(query.toUpperCase()) ? array.push(curr) : array = array
-    ))}
+    {
+      data.data.map(curr => (
+        curr.fullName.toUpperCase().startsWith(query.toUpperCase()) ? array.push(curr) : array = array
+      ))
+    }
     setParks(array);
+    // if (parks.length === 0 && query !== 'NULL'){
+    //   window.alert("No results");
+    // }
   }
 
   const updateSearch = e => {
     const toSet = e.target.value;
     setSearch(toSet);
+
   }
 
   const getSearch = e => {
     e.preventDefault();
-    setQuery(search);
-    setSearch('');
-    setParks([]);
+    if (search.length === 0) {
+      window.alert("Please enter a valid search.");
+    }
+    else {
+      setQuery(search);
+      setParks([]);
+    }
+
   }
 
   return (
@@ -44,7 +56,7 @@ function App() {
     <div className="App">
 
       <Header />
-    <br/><br/><br/><br/><br/>
+      <br /><br /><br /><br /><br />
       <h1 className="titleText">Welcome to the National Park Service Kiosk </h1>
 
       <form onSubmit={getSearch} className="search-form">

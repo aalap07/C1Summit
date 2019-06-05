@@ -5,7 +5,7 @@ import GoogleMapsContainer from '../map/GoogleMapsContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 
-const API_KEY = 'caMDVw2WGfzDThcGxvCSbIneKuTkM5S8YYIhAQJ7';
+const API_KEY = 'R0waPIU3Z36hgQSuWnvyWVXEMzn8iXPpng63M5Le';
 
 const Park = ({ title, location, parkCode, desc, dir, states, latLong, images}) => {
 
