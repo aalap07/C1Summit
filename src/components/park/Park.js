@@ -87,19 +87,21 @@ const Park = ({ title, location, parkCode, desc, dir, states, latLong, images}) 
         getPeopleData();
     }, [])
 
-    const lat = latLong.substring(4, 15);
-    var long = 0;
-    if (latLong[21] === "-"){
-         long = latLong.substring(21,33);
+    function getIndex(initial){
+        for(var i = 0; i < initial.length; i++) {
+            if (initial.charAt(i) == ":"){
+                return i;
+            }
+        }
+        return -1;
     }
-    else{
-         long = latLong.substring(22,33);
-    }
+    var latIndex = getIndex(latLong);
+    var longIndex = getIndex(latLong.substring(latIndex+1)) + latIndex+1;
+    const lat = latLong.substring(latIndex+1, latIndex+10);
+    const long = latLong.substring(longIndex+1, longIndex+10);
     
-    console.log(latLong)
     var latVal = parseFloat(lat, 10);
     var longVal = parseFloat(long, 10);
-    console.log(latVal + " " + longVal)
     return (
 
 
