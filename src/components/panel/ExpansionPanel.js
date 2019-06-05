@@ -61,11 +61,10 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
         <ExpansionPanelDetails>
           <Typography>
             <div className={style.therePanel}>
-              <p align="left"><strong>Visitor Centers:</strong></p>
+            <p align="left"><strong>{centersEmpty ? "" : "Visitor Centers"}</strong></p>
               {visitors.map(v => (
                 <p align="left" > <li>{v.description}</li></p>
               ))}
-              <p align="left">{(centersEmpty ? "There are no visitor centers :(." : "")}</p>
               
               {groundsEmpty ? "" : <hr/> }
 
