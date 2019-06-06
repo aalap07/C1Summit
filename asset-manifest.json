@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/C1Summit/static/css/main.d6c30d1c.chunk.css",
-    "main.js": "/C1Summit/static/js/main.b237d782.chunk.js",
-    "main.js.map": "/C1Summit/static/js/main.b237d782.chunk.js.map",
+    "main.css": "/C1Summit/static/css/main.9e8c8eff.chunk.css",
+    "main.js": "/C1Summit/static/js/main.9eae9a40.chunk.js",
+    "main.js.map": "/C1Summit/static/js/main.9eae9a40.chunk.js.map",
     "runtime~main.js": "/C1Summit/static/js/runtime~main.442ff9e2.js",
     "runtime~main.js.map": "/C1Summit/static/js/runtime~main.442ff9e2.js.map",
-    "static/js/2.97a6a80f.chunk.js": "/C1Summit/static/js/2.97a6a80f.chunk.js",
-    "static/js/2.97a6a80f.chunk.js.map": "/C1Summit/static/js/2.97a6a80f.chunk.js.map",
+    "static/js/2.c8c602e8.chunk.js": "/C1Summit/static/js/2.c8c602e8.chunk.js",
+    "static/js/2.c8c602e8.chunk.js.map": "/C1Summit/static/js/2.c8c602e8.chunk.js.map",
     "index.html": "/C1Summit/index.html",
-    "precache-manifest.65b069ab20edf36bd0b6d5e1ad3d6c05.js": "/C1Summit/precache-manifest.65b069ab20edf36bd0b6d5e1ad3d6c05.js",
+    "precache-manifest.102caaf493f6df9010ba084d9d6d8c72.js": "/C1Summit/precache-manifest.102caaf493f6df9010ba084d9d6d8c72.js",
     "service-worker.js": "/C1Summit/service-worker.js",
-    "static/css/main.d6c30d1c.chunk.css.map": "/C1Summit/static/css/main.d6c30d1c.chunk.css.map"
+    "static/css/main.9e8c8eff.chunk.css.map": "/C1Summit/static/css/main.9e8c8eff.chunk.css.map"
   }
 }
