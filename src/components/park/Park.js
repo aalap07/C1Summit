@@ -102,8 +102,6 @@ const Park = ({ title, parkCode, desc, states, latLong, images}) => {
     var latVal = parseFloat(lat, 10);
     var longVal = parseFloat(long, 10);
     return (
-
-
         <div className={style.park}>
             <br />
 
@@ -120,12 +118,12 @@ const Park = ({ title, parkCode, desc, states, latLong, images}) => {
                     <p>{states}</p>
                 </div>
             </div>
-
-            <GoogleMapsContainer
+        {latLong !== "" ?  <GoogleMapsContainer
                 lat={latVal}
                 long={longVal}
                 
-            />
+            /> : <p align="right"  style={{ color: 'white' }}> Location coordinates not provided by API. </p> }
+           
             <img className={style.parkImage} src={image} alt="Image" />
             <br /> <br />
             
