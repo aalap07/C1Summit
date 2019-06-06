@@ -7,7 +7,7 @@ import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 
 const API_KEY = 'R0waPIU3Z36hgQSuWnvyWVXEMzn8iXPpng63M5Le';
 
-const Park = ({ title, location, parkCode, desc, dir, states, latLong, images}) => {
+const Park = ({ title, parkCode, desc, states, latLong, images}) => {
 
     const [visitors, setVisitors] = useState([]);
     const [grounds, setGrounds] = useState([]);

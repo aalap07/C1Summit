@@ -1,16 +1,37 @@
-.Header .App_header {
-   /* background-image: url("/src/header-bg.jpg");     */
-    background-color: black;
-    top:0px;
-    opacity: 0.85;
-    position: fixed;
-    left: 0%;
-    height: 10%;
-    width: 100%;
-     background-image: url("../../../src/nps.png");
-     background-position-x: 13%;
-     background-position-y: 50%;
-     background-repeat: no-repeat;
-  }
 
+
+
+  @media (min-width:320px) {
+   .Header .App_header {
+      /* background-image: url("/src/header-bg.jpg");     */
+       background-color: black;
+       top:0px;
+       opacity: 0.85;
+       position: fixed;
+       left: 0%;
+       height: 10%;
+       width: 100%;
+        background-image: url("../../../src/nps.png");
+        background-position-x: 50%;
+        background-position-y: 50%;
+        background-repeat: no-repeat;
+     }
+}
+  @media (min-width:800px) {
+   .Header .App_header {
+      /* background-image: url("/src/header-bg.jpg");     */
+       background-color: black;
+       top:0px;
+       opacity: 0.85;
+       position: fixed;
+       left: 0%;
+       height: 10%;
+       width: 100%;
+        background-image: url("../../../src/nps.png");
+        background-position-x: 13%;
+        background-position-y: 50%;
+        background-repeat: no-repeat;
+     }
+  }
+  
   

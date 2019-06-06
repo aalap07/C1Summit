@@ -55,7 +55,7 @@ function App() {
 
       <form onSubmit={getSearch} className="search-form">
         <input className="search-bar" type="text" placeholder="Enter a park name..." value={search} onChange={updateSearch} />
-        <button className="search-button" type="submit">Search</button>
+       <button className="search-button" type="submit">Search</button>
       </form>
 
       <div className="parks">
