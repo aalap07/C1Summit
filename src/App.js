@@ -10,17 +10,14 @@ function App() {
   const [parks, setParks] = useState([]);
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('NULL');
-  const [visitors, setVisitors] = useState([]);
+  const data = require('../src/parks');
 
   useEffect(() => {
     getData();
-
   }, [query])
 
 
   const getData = async () => {
-    const response = await fetch(`https://developer.nps.gov/api/v1/parks?limit=10&q=${query}&fields=images&api_key=${API_KEY}`);
-    const data = await response.json();
     var array = [];
     {
       data.data.map(curr => (
@@ -28,15 +25,12 @@ function App() {
       ))
     }
     setParks(array);
-    // if (parks.length === 0 && query !== 'NULL'){
-    //   window.alert("No results");
-    // }
   }
 
   const updateSearch = e => {
     const toSet = e.target.value;
     setSearch(toSet);
-
+    
   }
 
   const getSearch = e => {
@@ -65,13 +59,12 @@ function App() {
       </form>
 
       <div className="parks">
+
         {parks.map(park => (
           <Park
             title={park.fullName}
-            location={park.states}
             parkCode={park.parkCode}
             desc={park.description}
-            dir={park.directionsUrl}
             states={park.states}
             images={park.images}
             latLong={park.latLong}
