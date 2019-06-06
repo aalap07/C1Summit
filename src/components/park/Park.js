@@ -5,7 +5,7 @@ import GoogleMapsContainer from '../map/GoogleMapsContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 
-const API_KEY = 'R0waPIU3Z36hgQSuWnvyWVXEMzn8iXPpng63M5Le';
+const API_KEY = 'Osq7v44aBTCLZLAAifD9ybktEZlcIdX0Dw7EfqJg';
 
 const Park = ({ title, parkCode, desc, states, latLong, images}) => {
 
@@ -18,8 +18,7 @@ const Park = ({ title, parkCode, desc, states, latLong, images}) => {
     const [lessons, setLessons] = useState([]);
     const [places, setPlaces] = useState([]);
     const [people, setPeople] = useState([]);
-    const [image, setImage] = useState(images[0].url);
-
+    const [image, setImage] = useState(images.length > 0 ? images[0].url : "https://www.nps.gov/common/commonspot/templates/images/logos/nps_social_image_02.jpg");
 
     const getArticleData = async () => {
         const response = await fetch(`https://developer.nps.gov/api/v1/articles?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
@@ -127,7 +126,6 @@ const Park = ({ title, parkCode, desc, states, latLong, images}) => {
                 long={longVal}
                 
             />
-            
             <img className={style.parkImage} src={image} alt="Image" />
             <br /> <br />
             

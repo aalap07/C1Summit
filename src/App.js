@@ -6,7 +6,7 @@ import Header from './components/header/Header'
 
 function App() {
 
-  const API_KEY = 'R0waPIU3Z36hgQSuWnvyWVXEMzn8iXPpng63M5Le';
+  const API_KEY = 'Osq7v44aBTCLZLAAifD9ybktEZlcIdX0Dw7EfqJg';
   const [parks, setParks] = useState([]);
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('NULL');
@@ -21,7 +21,7 @@ function App() {
     var array = [];
     {
       data.data.map(curr => (
-        curr.fullName.toUpperCase().startsWith(query.toUpperCase()) ? array.push(curr) : array = array
+        curr.fullName.toUpperCase().includes(query.toUpperCase()) ? array.push(curr) : array = array
       ))
     }
     setParks(array);
@@ -35,8 +35,14 @@ function App() {
 
   const getSearch = e => {
     e.preventDefault();
-    if (search.length === 0) {
-      window.alert("Please enter a valid search.");
+    if (search.length < 3) {
+      if (search.length === 0){
+        window.alert("Please enter a valid search.");
+      }
+      else{
+        window.alert("Your search must be at least 3 characters.");
+      }
+      setSearch("");
     }
     else {
       setQuery(search);
@@ -54,7 +60,7 @@ function App() {
       <h1 className="titleText">Welcome to the National Park Service Kiosk </h1>
 
       <form onSubmit={getSearch} className="search-form">
-        <input className="search-bar" type="text" placeholder="Enter a park name..." value={search} onChange={updateSearch} />
+        <input className="search-bar" type="text" placeholder="Enter a park name (3+ characters)" value={search} onChange={updateSearch} />
        <button className="search-button" type="submit">Search</button>
       </form>
 
