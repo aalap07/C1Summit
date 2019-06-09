@@ -36,13 +36,25 @@ class GoogleMapsContainer extends React.Component {
   }
   render() {
     const style = {
-        width: '20vw',
-        height: '25vh',
-        'marginLeft': 'auto',
-        'marginTop': '1%',
-        'marginRight': '77%'
-
+   
+          width: '20vw',
+          height: '25vh',
+          'marginLeft': 'auto',
+          'marginTop': '1%',
+          'marginRight': '77%'
+        
+      
     }
+
+    // const style = {
+      
+    //     width: '20vw',
+    //     height: '25vh',
+    //     'marginLeft': 'auto',
+    //     'marginTop': '1%',
+    //     'marginRight': '77%'
+
+    // }
     return (
       <Map
         item

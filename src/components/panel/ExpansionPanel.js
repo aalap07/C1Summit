@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, events, news, lessons, places, people }) {
+function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, fees, events, news, lessons, places, people }) {
   const classes = useStyles();
 
   var alertsEmpty = alerts.length === 0;
@@ -30,6 +30,8 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
   var lessonsEmpty = lessons.length === 0;
   var placesEmpty = places.length === 0;
   var peopleEmpty = people.length === 0;
+  var feesEmpty = fees.length === 0;
+
 
 
   return (
@@ -46,6 +48,12 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, event
           <Typography>
             <div className={style.infoPanel}>
               <p align="left">{desc}</p>
+              {feesEmpty ? "" : <hr />}
+              <p align="left"><strong>{feesEmpty ? "" : "Entrance Fees"}</strong></p>
+
+              {fees.map(fee => (
+                <p align="left" > <li>{fee.title}: ${fee.cost.substring(0,fee.cost.indexOf(".")+3)}</li></p>
+              ))}
             </div>
           </Typography>
         </ExpansionPanelDetails>

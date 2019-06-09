@@ -2,12 +2,66 @@ import React, { useEffect, useState } from 'react';
 import Park from './components/park/Park';
 import './App.css';
 import Header from './components/header/Header'
-
+import Select from 'react-select';
 function App() {
   const [parks, setParks] = useState([]);
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('NULL');
   const data = require('../src/parks');
+  const [state, setState] = useState('');
+
+  const states = [
+    { label: "AL", value: "AL" },
+    { label: "AK", value: "AK" },
+    { label: "AZ", value: "AZ" },
+    { label: "AR", value: "AR" },
+    { label: "CA", value: "CA" },
+    { label: "CO", value: "CO" },
+    { label: "CT", value: "CT" },
+    { label: "DE", value: "DE" },
+    { label: "FL", value: "FL" },
+    { label: "GA", value: "GA" },
+    { label: "HI", value: "HI" },
+    { label: "ID", value: "ID" },
+    { label: "IL", value: "IL" },
+    { label: "IN", value: "IN" },
+    { label: "IA", value: "IA" },
+    { label: "KS", value: "KS" },
+    { label: "KY", value: "KY" },
+    { label: "LA", value: "LA" },
+    { label: "ME", value: "ME" },
+    { label: "MD", value: "MD" },
+    { label: "MA", value: "MA" },
+    { label: "ME", value: "ME" },
+    { label: "MN", value: "MN" },
+    { label: "MS", value: "MS" },
+    { label: "MO", value: "MO" },
+    { label: "MT", value: "MT" },
+    { label: "NE", value: "NE" },
+    { label: "NV", value: "NV" },
+    { label: "NH", value: "NH" },
+    { label: "NJ", value: "NJ" },
+    { label: "NM", value: "NM" },
+    { label: "NY", value: "NY" },
+    { label: "NC", value: "NC" },
+    { label: "ND", value: "ND" },
+    { label: "OH", value: "OH" },
+    { label: "OK", value: "OK" },
+    { label: "OR", value: "OR" },
+    { label: "PA", value: "PA" },
+    { label: "RI", value: "RI" },
+    { label: "SC", value: "SC" },
+    { label: "SD", value: "SD" },
+    { label: "TN", value: "TN" },
+    { label: "TX", value: "TX" },
+    { label: "UT", value: "UT" },
+    { label: "VT", value: "VT" },
+    { label: "VA", value: "VA" },
+    { label: "WA", value: "WA" },
+    { label: "WV", value: "WV" },
+    { label: "WI", value: "WI" },
+    { label: "WY", value: "WY" },
+  ];
 
   useEffect(() => {
     getData();
@@ -23,7 +77,7 @@ function App() {
     ))
     count = array.length;
     if (count == 0 && query !== "NULL") {
-      window.alert("There are no results for " + query  + ".");
+      window.alert("There are no results for " + query + ".");
       setSearch('');
     }
     else {
@@ -51,11 +105,13 @@ function App() {
     else {
       setQuery(search);
       setParks([]);
-
     }
-
-
   }
+  
+ const stateChange = selectedOption => {
+    setState({ selectedOption });
+  };
+
 
   return (
 
@@ -66,7 +122,15 @@ function App() {
       <h1 className="titleText">Welcome to the National Park Service Kiosk </h1>
 
       <form onSubmit={getSearch} className="search-form">
+        <Select
+          className="state-selector"
+          placeholder="State"
+          options={states}
+          onChange={stateChange}
+        />
+
         <input className="search-bar" type="text" placeholder="Enter a park name (3+ characters)" value={search} onChange={updateSearch} />
+
         <button className="search-button" type="submit">Search</button>
       </form>
 

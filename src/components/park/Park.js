@@ -10,6 +10,7 @@ const API_KEY = 'Osq7v44aBTCLZLAAifD9ybktEZlcIdX0Dw7EfqJg';
 const Park = ({ title, parkCode, desc, states, latLong, images}) => {
 
     const [visitors, setVisitors] = useState([]);
+    const [fees, setFees] = useState([]);
     const [grounds, setGrounds] = useState([]);
     const [alerts, setAlerts] = useState([]);
     const [articles, setArticles] = useState([]);
@@ -74,6 +75,14 @@ const Park = ({ title, parkCode, desc, states, latLong, images}) => {
         setPeople(data.data);
     }
 
+    const getFeesData = async () => {
+        const response = await fetch(`https://developer.nps.gov/api/v1/parks?parkCode=${parkCode}&limit=5&start=0&fields=entranceFees&api_key=${API_KEY}`);
+        const data = await response.json();
+        setFees(data.data[0].entranceFees);
+    }
+
+
+
     useEffect(() => {
         getVisitorData();
         getGroundsData();
@@ -84,6 +93,7 @@ const Park = ({ title, parkCode, desc, states, latLong, images}) => {
         getLessonsData();
         getPlacesData();
         getPeopleData();
+        getFeesData();
     }, [])
 
     function getIndex(initial){
@@ -140,6 +150,7 @@ const Park = ({ title, parkCode, desc, states, latLong, images}) => {
                 lessons={lessons}
                 places={places}
                 people={people}
+                fees={fees}
 
             />
 
