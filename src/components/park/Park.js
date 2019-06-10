@@ -5,7 +5,7 @@ import GoogleMapsContainer from '../map/GoogleMapsContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 
-const API_KEY = 'Osq7v44aBTCLZLAAifD9ybktEZlcIdX0Dw7EfqJg';
+const API_KEY = 'CBeLgO9Jws60UWlNoKHtfdSqyHZX6GnLKq4FHIPZ';
 
 const Park = ({ title, parkCode, desc, states, latLong, images}) => {
 
@@ -98,7 +98,7 @@ const Park = ({ title, parkCode, desc, states, latLong, images}) => {
 
     function getIndex(initial){
         for(var i = 0; i < initial.length; i++) {
-            if (initial.charAt(i) == ":"){
+            if (initial.charAt(i) === ":"){
                 return i;
             }
         }
@@ -124,7 +124,7 @@ const Park = ({ title, parkCode, desc, states, latLong, images}) => {
 
                 />
                 <div className={style.locLabel}>
-
+                    
                     <p>{states}</p>
                 </div>
             </div>

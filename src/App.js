@@ -8,7 +8,7 @@ function App() {
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('NULL');
   const data = require('../src/parks');
-  const [state, setState] = useState('');
+  const [state, setState] = useState('NULL');
 
   const states = [
     { label: "AL", value: "AL" },
@@ -67,7 +67,6 @@ function App() {
     getData();
   }, [query])
 
-
   var count = -1;
   const getData = async () => {
     var array = [];
@@ -107,14 +106,28 @@ function App() {
       setParks([]);
     }
   }
+
+  
   
  const stateChange = selectedOption => {
-    setState({ selectedOption });
-  };
+    count = -1;
+  var array = [];
+  data.data.map(curr => (
+    curr.states === selectedOption.value ? array.push(curr) : array = array
+  ))
+  count = array.length;
+  if (count == 0) {
+    window.alert("There are no results for " + selectedOption.value + ".");
+    setSearch('');
+  }
+  else {
+    setParks(array);
+  }
+  console.log("called");
+ };
 
 
-  return (
-
+ return (  
     <div className="App">
 
       <Header />

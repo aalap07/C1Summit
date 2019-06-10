@@ -24,7 +24,7 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, fees,
   var groundsEmpty = grounds.length === 0;
   var centersEmpty = visitors.length === 0;
   var articlesEmpty = articles.length === 0;
-  var lotsOfArticles = articles.length > 10;
+  var lotsOfArticles = articles.length > 5;
   var eventsEmpty = events.length === 0;
   var newsEmpty = news.length === 0;
   var lessonsEmpty = lessons.length === 0;
@@ -47,6 +47,7 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, fees,
         <ExpansionPanelDetails>
           <Typography>
             <div className={style.infoPanel}>
+            <p align="left"><strong>Description</strong></p>
               <p align="left">{desc}</p>
               {feesEmpty ? "" : <hr />}
               <p align="left"><strong>{feesEmpty ? "" : "Entrance Fees"}</strong></p>
@@ -84,7 +85,7 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, fees,
 
               {eventsEmpty ? "" : <hr />}
 
-              <p align="left"><strong>{(eventsEmpty ? "" : "Events:")}</strong></p>
+              <p align="left"><strong>{(eventsEmpty ? "" : "Events")}</strong></p>
               {events.map(eve => (
                 
                 <p align="left"> <li>{eve.description.replace(/(<([^>]+)>)/ig,'')}</li> </p>
@@ -123,17 +124,15 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, fees,
               <hr />
 
               <p align="left"><strong>Articles: {(lotsOfArticles ? " (Top 5)" : "")}</strong></p>
-
-              {articles.map(art => (
+                
+              {articles.slice(0,5).map(art => (
                 <p align="left"><li><a href={art.url} target="_blank">{art.title}</a></li></p>
               ))}
-
-              <p align="left">{(articlesEmpty ? "There are no articles :(." : "")}</p>
 
 
               {newsEmpty ? "" : <hr />}
 
-              <p align="left"><strong>{(newsEmpty ? "" : "News:")}</strong></p>
+              <p align="left"><strong>{(newsEmpty ? "" : "News")}</strong></p>
               {news.map(n => (
                 <p align="left"><li><a href={n.url} target="_blank">{n.title}</a></li></p>))
               }
