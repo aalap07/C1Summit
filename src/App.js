@@ -99,7 +99,7 @@ function App() {
   }
 
   const stateChange = selectedOption => {
-    setState(selectedOption);
+    setSearch(selectedOption.value);
   };
 
 
@@ -145,7 +145,7 @@ function App() {
         <FormControlLabel
           value="key"
           control={<Radio color="primary" />}
-          label="Keyword"
+          label="Name"
           labelPlacement="top"
         />
         <FormControlLabel
