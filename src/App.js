@@ -2,7 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Park from './components/park/Park';
 import './App.css';
 import Header from './components/header/Header'
-import Select from 'react-select';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+
+
 function App() {
   const [parks, setParks] = useState([]);
   const [search, setSearch] = useState('');
@@ -76,8 +82,24 @@ function App() {
       <h1 className="titleText">Welcome to the National Park Service Kiosk </h1>
 
       <form onSubmit={getSearch} className="search-form">
+      <FormControl component="fieldset">
+      <RadioGroup aria-label="position" name="position" value={"key"} row>
+        <FormControlLabel
+          value="key"
+          control={<Radio color="primary" />}
+          label="Keyword"
+          labelPlacement="top"
+        />
+        <FormControlLabel
+          value="states"
+          control={<Radio color="primary" />}
+          label="States"
+          labelPlacement="top"
+        />
+       
         
-
+      </RadioGroup>
+    </FormControl>
         <input className="search-bar" type="text" placeholder="Enter a park name (3+ characters) or state abbr" value={search} onChange={updateSearch} />
 
         <button className="search-button" type="submit">Search</button>
