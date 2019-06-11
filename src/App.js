@@ -67,8 +67,8 @@ function App() {
     { label: "Virginia", value: "VA" },
     { label: "Washington", value: "WA" },
     { label: "West Virginia", value: "WV" },
-    { label: "West Virginia", value: "WI" },
-    { label: "West Virginia", value: "WY" },
+    { label: "Wisconsin", value: "WI" },
+    { label: "Wyoming", value: "WY" },
   ];
 
   useEffect(() => {
