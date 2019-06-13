@@ -4,8 +4,11 @@ import Panel from '../panel/ExpansionPanel';
 import GoogleMapsContainer from '../map/GoogleMapsContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
+import ErrorBoundary from '../error/ErrorBoundary';
+import Alert from '../symbols/safety-caution-alerts-white-22.svg';
 
-const API_KEY = 'dv4BgBalhdqz2FtOpA6zhe4BYSehZihKgvMP9RPj';
+const API_KEY = 'aMysch1m1AyFNaZNAOCbsuOSmjA8oNg48em64Rm9';
+
 
 const Park = ({ title, parkCode, desc, states, latLong, images}) => {
 
@@ -21,67 +24,125 @@ const Park = ({ title, parkCode, desc, states, latLong, images}) => {
     const [people, setPeople] = useState([]);
     const [image, setImage] = useState(images.length > 0 ? images[0].url : "https://www.nps.gov/common/commonspot/templates/images/logos/nps_social_image_02.jpg");
 
+
     const getArticleData = async () => {
-        const response = await fetch(`https://developer.nps.gov/api/v1/articles?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
-        const data = await response.json();
-        setArticles(data.data);
+        try{
+            const response = await fetch(`https://developer.nps.gov/api/v1/articles?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
+            const data = await response.json();
+            setArticles(data.data);    
+        }
+        catch (error) {
+        }
+       
     }
 
     const getVisitorData = async () => {
-        const response = await fetch(`https://developer.nps.gov/api/v1/visitorcenters?parkCode=${parkCode}&limit=10&api_key=${API_KEY}`);
-        const data = await response.json();
-        setVisitors(data.data);
+        try{
+            const response = await fetch(`https://developer.nps.gov/api/v1/visitorcenters?parkCode=${parkCode}&limit=10&api_key=${API_KEY}`);
+            const data = await response.json();
+            setVisitors(data.data); 
+        }
+        catch (error) {
+
+        }
+        
     }
 
     const getAlertData = async () => {
-        const response = await fetch(`https://developer.nps.gov/api/v1/alerts?parkCode=${parkCode}&limit=10&api_key=${API_KEY}`);
-        const data = await response.json();
-        setAlerts(data.data);
+        try{
+            const response = await fetch(`https://developer.nps.gov/api/v1/alerts?parkCode=${parkCode}&limit=10&api_key=${API_KEY}`);
+            const data = await response.json();
+            setAlerts(data.data);
+        }
+        catch (error) {
+
+        }
+     
     }
 
     const getGroundsData = async () => {
-        const response = await fetch(`https://developer.nps.gov/api/v1/campgrounds?parkCode=${parkCode}&limit=10&api_key=${API_KEY}`);
-        const data = await response.json();
-        setGrounds(data.data);
+        try{
+            const response = await fetch(`https://developer.nps.gov/api/v1/campgrounds?parkCode=${parkCode}&limit=10&api_key=${API_KEY}`);
+            const data = await response.json();
+            setGrounds(data.data);
+        }
+        catch (error) {
+
+        }
+      
     }
 
     const getEventsData = async () => {
-        const response = await fetch(`https://developer.nps.gov/api/v1/events?parkCode=${parkCode}&limit=2&api_key=${API_KEY}`);
+        try{
+            const response = await fetch(`https://developer.nps.gov/api/v1/events?parkCode=${parkCode}&limit=2&api_key=${API_KEY}`);
         const data = await response.json();
         setEvents(data.data);
+        }
+        catch (error) {
+
+        }
+        
     }
 
     const getNewsData = async () => {
-        const response = await fetch(`https://developer.nps.gov/api/v1/news?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
-        const data = await response.json();
-        setNews(data.data);
+        try{
+            const response = await fetch(`https://developer.nps.gov/api/v1/news?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
+            const data = await response.json();
+            setNews(data.data);
+        }
+        catch (error) {
+
+        }
+      
     }
 
     const getLessonsData = async () => {
-        const response = await fetch(`https://developer.nps.gov/api/v1/lessonplans?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
-        const data = await response.json();
-        setLessons(data.data);
+        try{
+            const response = await fetch(`https://developer.nps.gov/api/v1/lessonplans?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
+            const data = await response.json();
+            setLessons(data.data);
+        }
+        catch (error) {
+
+        }
+      
     }
 
     const getPlacesData = async () => {
-        const response = await fetch(`https://developer.nps.gov/api/v1/places?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
-        const data = await response.json();
-        setPlaces(data.data);
+        try{
+            const response = await fetch(`https://developer.nps.gov/api/v1/places?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
+            const data = await response.json();
+            setPlaces(data.data);
+        }
+        catch (error) {
+
+        }
+       
     }
 
     const getPeopleData = async () => {
-        const response = await fetch(`https://developer.nps.gov/api/v1/people?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
-        const data = await response.json();
-        setPeople(data.data);
+        try{
+            const response = await fetch(`https://developer.nps.gov/api/v1/people?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
+            const data = await response.json();
+            setPeople(data.data);
+        }
+        catch (error) {
+
+        }
+
     }
 
     const getFeesData = async () => {
-        const response = await fetch(`https://developer.nps.gov/api/v1/parks?parkCode=${parkCode}&limit=5&start=0&fields=entranceFees&api_key=${API_KEY}`);
-        const data = await response.json();
-        setFees(data.data[0].entranceFees);
+        try{
+            const response = await fetch(`https://developer.nps.gov/api/v1/parks?parkCode=${parkCode}&limit=5&start=0&fields=entranceFees&api_key=${API_KEY}`);
+            const data = await response.json();
+            setFees(data.data[0].entranceFees);
+        }
+        catch (error) {
+
+        }  
+       
     }
-
-
 
     useEffect(() => {
         getVisitorData();
@@ -94,6 +155,7 @@ const Park = ({ title, parkCode, desc, states, latLong, images}) => {
         getPlacesData();
         getPeopleData();
         getFeesData();
+                   
     }, [])
 
     function getIndex(initial){
@@ -112,10 +174,19 @@ const Park = ({ title, parkCode, desc, states, latLong, images}) => {
     var latVal = parseFloat(lat, 10);
     var longVal = parseFloat(long, 10);
     return (
+
+        <ErrorBoundary>
         <div className={style.park}>
             <br />
 
             <h2 className={style.head}>{title}</h2>
+            
+            <div className={style.symbols}>
+                {alerts.length !==0 ? <img src = {Alert}/> : <br/>}
+
+            </div>
+
+
             <div className={style.mapIcon}>
                 <FontAwesomeIcon
                     color="white"
@@ -156,6 +227,7 @@ const Park = ({ title, parkCode, desc, states, latLong, images}) => {
 
 
         </div>
+        </ErrorBoundary>
     );
 }
 

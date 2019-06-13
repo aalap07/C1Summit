@@ -6,16 +6,14 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 import Select from 'react-select';
-
+import ErrorBoundary from './components/error/ErrorBoundary';
 
 function App() {
   const [parks, setParks] = useState([]);
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('NULL');
   const data = require('../src/parks');
-  const [state, setState] = useState('NULL');
   const [type, setType] = useState('key');
 
   const states = [
@@ -97,7 +95,7 @@ function App() {
         setParks(array);
       }
   }
-
+  
   const stateChange = selectedOption => {
     setSearch(selectedOption.value);
   };
@@ -139,6 +137,7 @@ function App() {
       <h1 className="titleText">Welcome to the National Park Service Kiosk </h1>
 
       <form onSubmit={getSearch} className="search-form">
+
       <FormControl component="fieldset">
       <RadioGroup aria-label="position" name="position" value={type} onChange={handleChange} row>
         <FormControlLabel
@@ -167,7 +166,7 @@ function App() {
 
         <button className="search-button" type="submit">Search</button>
       </form>
-
+    <ErrorBoundary> 
       <div className="parks">
         {parks.map(park => (
           <Park
@@ -181,6 +180,8 @@ function App() {
         ))}
 
       </div>
+      </ErrorBoundary> 
+
     </div>
   );
 

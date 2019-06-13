@@ -67,11 +67,15 @@
   }
   .mapIcon{
   margin-left: 230px;
-  margin-top: 10px;
+  margin-top: 20px;
   color: white;
  display:flex;
- flex-direction: row; 
-
+ flex-direction: row;
+}
+.symbols{
+  margin-right: 50%;
+  margin-bottom: -6%;
+  color: white;
 }
 }
 
