@@ -37,7 +37,7 @@ class GoogleMapsContainer extends React.Component {
    
           width: '20vw',
           height: '25vh',
-          'marginLeft': '0',
+          'marginLeft': 'auto',
           'marginTop': '1%',
           'marginRight': '77%'
         

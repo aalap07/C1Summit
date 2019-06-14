@@ -34,6 +34,15 @@
     margin: 25px;
     max-width: 90%;
   }
+  .symbols{
+    width: 65%;
+    margin-bottom: 5%;
+    color: white;
+  }
+  .symbolItem{
+    width: 20%;
+    display: inline-block;
+  }
 }
 
 
