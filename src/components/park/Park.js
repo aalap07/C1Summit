@@ -186,11 +186,11 @@ const Park = ({ title, parkCode, desc, states, latLong, images}) => {
             <h2 className={style.head}>{title}</h2>
             
             <div className={style.symbols}>
-                {alerts.length !==0 ? <img src = {Alert}/> : <br/>}
-                {events.length !==0 ? <img src = {Event}/> : <br/>}
-                {visitors.length !==0 ? <img src = {Visitor}/> : <br/>}
-                {news.length !==0 ? <img src = {News}/> : <br/>}
-                {places.length !==0 ? <img src = {Place}/> : <br/>}
+                <div className={style.symbolItem}>  {alerts.length !==0 ? <img src = {Alert} title="There are alerts for this park"/> : <br/>} </div>
+                <div className={style.symbolItem}> {events.length !==0 ? <img src = {Event}/> : <br/>}</div>
+                <div className={style.symbolItem}>{visitors.length !==0 ? <img src = {Visitor}/> : <br/>}</div>
+                <div className={style.symbolItem}> {news.length !==0 ? <img src = {News}/> : <br/>}</div>
+                <div className={style.symbolItem}>{places.length !==0 ? <img src = {Place}/> : <br/>}</div>
 
             </div>
 

@@ -75,9 +75,14 @@
 .symbols{
   margin-right: 50%;
   margin-bottom: -6%;
+  width: 25%;
   color: white;
 }
-
+.symbolItem{
+  width: 20%;
+  text-align: center;
+  display: inline-block;
+}
 }
 
 .head{
