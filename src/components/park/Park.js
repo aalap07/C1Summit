@@ -6,6 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 import ErrorBoundary from '../error/ErrorBoundary';
 import Alert from '../symbols/safety-caution-alerts-white-22.svg';
+import Event from '../symbols/calendar-events-white-22.svg';
+import Visitor from '../symbols/visitor-center-white-22.svg';
+import News from '../symbols/newspaper-white-22.svg';
+import Place from '../symbols/sign-white-22.svg';
 
 const API_KEY = 'aMysch1m1AyFNaZNAOCbsuOSmjA8oNg48em64Rm9';
 
@@ -183,6 +187,10 @@ const Park = ({ title, parkCode, desc, states, latLong, images}) => {
             
             <div className={style.symbols}>
                 {alerts.length !==0 ? <img src = {Alert}/> : <br/>}
+                {events.length !==0 ? <img src = {Event}/> : <br/>}
+                {visitors.length !==0 ? <img src = {Visitor}/> : <br/>}
+                {news.length !==0 ? <img src = {News}/> : <br/>}
+                {places.length !==0 ? <img src = {Place}/> : <br/>}
 
             </div>
 
