@@ -11,10 +11,10 @@ import Visitor from '../symbols/visitor-center-white-22.svg';
 import News from '../symbols/newspaper-white-22.svg';
 import Place from '../symbols/sign-white-22.svg';
 
-const API_KEY = 'aMysch1m1AyFNaZNAOCbsuOSmjA8oNg48em64Rm9';
+const API_KEY = 'he8mu2lXkcdmhRK7wufiNsegFcBc1iS4eGgILNa0';
 
 
-const Park = ({ title, parkCode, desc, states, latLong, images}) => {
+const Park = ({ title, parkCode, desc, states, latLong, images, desig}) => {
 
     const [visitors, setVisitors] = useState([]);
     const [fees, setFees] = useState([]);
@@ -184,6 +184,11 @@ const Park = ({ title, parkCode, desc, states, latLong, images}) => {
             <br />
 
             <h2 className={style.head}>{title}</h2>
+
+            {desig !== "" ? 
+            <h4 className={style.designationLabel}>Designation: {desig}</h4>
+            : ""}
+
             
             <div className={style.symbols}>
                 <div className={style.symbolItem}>  {alerts.length !==0 ? <img src = {Alert} title="There are alerts for this park"/> : <br/>} </div>

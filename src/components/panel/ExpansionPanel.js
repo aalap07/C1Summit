@@ -167,8 +167,6 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, fees,
 
               {lessonsEmpty ? "" : <hr />}
 
-
-
               <p align="left"><strong>{(placesEmpty ? "" : "Places:")}</strong></p>
               {places.map(place => (
                 <p align="left"><li>{place.listingdescription}</li></p>

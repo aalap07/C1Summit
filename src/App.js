@@ -15,6 +15,37 @@ function App() {
   const [query, setQuery] = useState('NULL');
   const data = require('../src/parks');
   const [type, setType] = useState('key');
+  const [deg, setDeg] = useState("Any");
+
+
+
+  const designations = [
+    { label: "Any", value: "Any" },
+    { label: "National Battlefield", value: "National Battlefield" },
+    { label: "National Battlefield Park", value: "National Battlefield Park" },
+    { label: "National Battlefield Site", value: "National Battlefield Site" },
+    { label: "National Military Park", value: "National Military Park" },
+    { label: "National Historical Park", value: "National Historical Park" },
+    { label: "National Historic Site", value: "National Historic Site" },
+    { label: "International Historic Site", value: "International Historic Site" },
+    { label: "National Lakeshore", value: "National Lakeshore" },
+    { label: "National Memorial", value: "National Memorial" },
+    { label: "National Monument", value: "National Monument" },
+    { label: "National Park", value: "National Park" },
+    { label: "National Parkway", value: "National Parkway" },
+    { label: "National Preserve", value: "National Preserve" },
+    { label: "National Reserve", value: "National Reserve" },
+    { label: "National Recreation Area", value: "National Recreation Area" },
+    { label: "National River", value: "National River" },
+    { label: "National Wild and Scenic River", value: "National Wild and Scenic River" },
+    { label: "National Wild and Scenic Riverway", value: "National Wild and Scenic Riverway" },
+    { label: "National Scenic Trail", value: "National Scenic Trail" },
+    { label: "National Seashore", value: "National Seashore" },
+    { label: "Affiliated Area", value: "Affiliated Area" },
+    { label: "National Heritage Area", value: "National Heritage Area" },
+    { label: "National Trails System", value: "National Trails System" },
+    { label: "National Wild & Scenic Rivers System", value: "National Wild & Scenic Rivers System" },
+  ];
 
   const states = [
     { label: "Alabama", value: "AL" },
@@ -85,16 +116,25 @@ function App() {
   var count = -1;
   const getData = async () => {
     var array = [];
+    
     if (query.length >= 3){
       data.data.map(curr => (
         curr.fullName.toUpperCase().includes(query.toUpperCase()) ? array.push(curr) : array = array
       ))
     }
     else if (query.length === 2){
+      if (deg === "Any"){
       data.data.map(curr => (
         curr.states.toUpperCase().includes(query.toUpperCase()) ? array.push(curr) : array = array
       ))
-    }
+      }
+      else{
+        data.data.map(curr => (
+          curr.states.toUpperCase().includes(query.toUpperCase()) &&  curr.designation === (deg) ? array.push(curr) : array = array
+        ))
+        }
+      }
+    
       count = array.length;
       if (count == 0 && query !== "NULL") {
         window.alert("There are no results for " + query + ".");
@@ -107,6 +147,10 @@ function App() {
   
   const stateChange = selectedOption => {
     setSearch(selectedOption.value);
+  };
+
+  const degChange = selectedOption => {
+    setDeg(selectedOption.value);
   };
 
 
@@ -132,7 +176,6 @@ function App() {
      }
   }
 
-  
   function handleChange(event) {
     setSearch("");
     setType(event.target.value);
@@ -146,7 +189,7 @@ function App() {
       <h1 className="titleText">Welcome to the National Park Service Kiosk </h1>
 
       <form onSubmit={getSearch} className="search-form">
-
+        
       <FormControl component="fieldset">
       <RadioGroup aria-label="position" name="position" value={type} onChange={handleChange} row>
         <FormControlLabel
@@ -158,13 +201,12 @@ function App() {
         <FormControlLabel
           value="states"
           control={<Radio color="primary" />}
-          label="States"
+          label="State/Designation"
           labelPlacement="top"
         />
-       
-        
       </RadioGroup>
     </FormControl>
+
     {type === "key" ? <input className="search-bar" type="text" placeholder="Enter a park name (3+ characters)" value={search} onChange={updateSearch} />
       : <Select
       className="state-selector"
@@ -173,8 +215,16 @@ function App() {
       onChange={stateChange}
     />}
 
+    {type !== "key"? <Select
+      className="state-selector"
+      placeholder="Designation"
+      options={designations}
+      onChange={degChange}
+    /> : ""}
+
         <button className="search-button" type="submit">Search</button>
       </form>
+     { query !== 'NULL' && query !== '' ?  <p>Showing results for {query}</p> : ""}
     <ErrorBoundary> 
       <div className="parks">
         {parks.map(park => (
@@ -185,6 +235,7 @@ function App() {
             states={park.states}
             images={park.images}
             latLong={park.latLong}
+            desig={park.designation}
           />
         ))}
 
