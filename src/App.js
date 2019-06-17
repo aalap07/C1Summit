@@ -118,9 +118,11 @@ function App() {
     setParks([]);
     var array = [];
     if (query.length >= 3){
-      data.data.map(curr => (
-        curr.fullName.toUpperCase().includes(query.toUpperCase()) ? array.push(curr) : array = array
-      ))
+    
+        data.data.map(curr => (
+          curr.fullName.toUpperCase().includes(query.toUpperCase()) ? array.push(curr) : array = array
+        ))
+      
     }
     else if (query.length === 2){
       if (deg === "Any"){
@@ -142,7 +144,7 @@ function App() {
       // }
       // else {
         setParks(array);
-      console.log(count);
+        setDeg("Any");
   }
   
   const stateChange = selectedOption => {
@@ -175,11 +177,12 @@ function App() {
       setQuery(search);
       setParks([]);
      }
-    getData();
+   // getData();
   }
 
   function handleChange(event) {
     setSearch("");
+    setDeg("Any");
     setType(event.target.value);
   }
 
