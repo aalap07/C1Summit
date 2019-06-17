@@ -115,6 +115,7 @@ function App() {
 
   var count = -1;
   const getData = async () => {
+    setParks([]);
     var array = [];
     if (query.length >= 3){
       data.data.map(curr => (
@@ -135,13 +136,13 @@ function App() {
       }
     
       count = array.length;
-      if (count == 0 && query !== "NULL") {
-        window.alert("There are no results for " + query + ".");
-        setSearch('');
-      }
-      else {
+      // if (count == 0 && query !== "NULL") {
+      //   window.alert("There are no results for " + query + ".");
+      //   setSearch('');
+      // }
+      // else {
         setParks(array);
-      }
+      console.log(count);
   }
   
   const stateChange = selectedOption => {
@@ -159,6 +160,7 @@ function App() {
   }
 
   const getSearch = e => {
+    setParks([]);
     e.preventDefault();
     if (search.length < 3 && type === "key") {
       if (search.length === 0) {
@@ -225,7 +227,10 @@ function App() {
         <button className="search-button" type="submit">Search</button>
       </form>
      { query !== 'NULL' && query !== '' ?  <p>Showing results for {query}</p> : ""}
+     
+
     <ErrorBoundary> 
+
       <div className="parks">
         {parks.map(park => (
           <Park
