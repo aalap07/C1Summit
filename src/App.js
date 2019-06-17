@@ -150,7 +150,7 @@ function App() {
       }
       else {
         setParks(array);
-        setDeg("Any");
+        //setDeg("Any");
       }
   }
   

@@ -11,7 +11,7 @@ import Visitor from '../symbols/visitor-center-white-22.svg';
 import News from '../symbols/newspaper-white-22.svg';
 import Place from '../symbols/sign-white-22.svg';
 
-const API_KEY = '95JtEsUpDHceEE0q39RjPQYhzjcIndYXS3ZiSIuJ';
+const API_KEY = '5gZxwdez7ze7yA5iLdxdZjaDGTwo0BCcIFKTVVoK';
 
 
 const Park = ({ title, parkCode, desc, states, latLong, images, desig}) => {
