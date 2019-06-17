@@ -116,7 +116,6 @@ function App() {
   var count = -1;
   const getData = async () => {
     var array = [];
-    
     if (query.length >= 3){
       data.data.map(curr => (
         curr.fullName.toUpperCase().includes(query.toUpperCase()) ? array.push(curr) : array = array
@@ -174,6 +173,7 @@ function App() {
       setQuery(search);
       setParks([]);
      }
+    getData();
   }
 
   function handleChange(event) {
