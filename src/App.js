@@ -117,22 +117,23 @@ function App() {
   const getData = async () => {
     setParks([]);
     var array = [];
-    if (query.length >= 3){
+    var trailerIndex = query.indexOf("&Q=");
+    if (trailerIndex >= 3){
     
         data.data.map(curr => (
-          curr.fullName.toUpperCase().includes(query.toUpperCase()) ? array.push(curr) : array = array
+          curr.fullName.toUpperCase().includes(query.substring(0,trailerIndex).toUpperCase()) ? array.push(curr) : array = array
         ))
       
     }
-    else if (query.length === 2){
+    else if (trailerIndex === 2){
       if (deg === "Any"){
       data.data.map(curr => (
-        curr.states.toUpperCase().includes(query.toUpperCase()) ? array.push(curr) : array = array
+        curr.states.toUpperCase().includes(query.substring(0,2).toUpperCase()) ? array.push(curr) : array = array
       ))
       }
       else{
         data.data.map(curr => (
-          curr.states.toUpperCase().includes(query.toUpperCase()) &&  curr.designation === (deg) ? array.push(curr) : array = array
+          curr.states.toUpperCase().includes(query.substring(0,2).toUpperCase()) &&  curr.designation === (deg) ? array.push(curr) : array = array
         ))
         }
       }
@@ -174,10 +175,10 @@ function App() {
       setSearch("");
     }
     else {
-      setQuery(search);
+      var trailer = "&Q=" + Math.random() * 10 + 1;
+      setQuery(search + trailer);
       setParks([]);
      }
-   // getData();
   }
 
   function handleChange(event) {
@@ -229,7 +230,7 @@ function App() {
 
         <button className="search-button" type="submit">Search</button>
       </form>
-     { query !== 'NULL' && query !== '' ?  <p>Showing results for {query}</p> : ""}
+     { query !== 'NULL' && query !== '' ?  <p>Showing results for {query.substring(0,query.indexOf("&Q="))}</p> : ""}
      
 
     <ErrorBoundary> 
