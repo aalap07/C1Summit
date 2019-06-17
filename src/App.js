@@ -139,13 +139,19 @@ function App() {
       }
     
       count = array.length;
-      // if (count == 0 && query !== "NULL") {
-      //   window.alert("There are no results for " + query + ".");
-      //   setSearch('');
-      // }
-      // else {
+      if (count == 0 && query !== "NULL") {
+        if (trailerIndex !== 2){
+          window.alert("There are no results for " + query.substring(0,query.indexOf("&Q=")) + ".");
+          setSearch('');
+        }
+        else{
+          window.alert("There are no results for " + query.substring(0,query.indexOf("&Q=")) + " with designation " + deg + ".");
+        }
+      }
+      else {
         setParks(array);
         setDeg("Any");
+      }
   }
   
   const stateChange = selectedOption => {
