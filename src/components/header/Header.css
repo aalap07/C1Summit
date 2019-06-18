@@ -1,6 +1,7 @@
 
   @media (min-width:320px) {
    .Header .App_header {
+      
        background-color: black;
        top:0px;
        opacity: 0.85;

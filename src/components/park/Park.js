@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import style from './park.module.css';
 import Panel from '../panel/ExpansionPanel';
 import GoogleMapsContainer from '../map/GoogleMapsContainer';
@@ -11,7 +11,7 @@ import Visitor from '../symbols/visitor-center-white-22.svg';
 import News from '../symbols/newspaper-white-22.svg';
 import Place from '../symbols/sign-white-22.svg';
 
-const API_KEY = '5gZxwdez7ze7yA5iLdxdZjaDGTwo0BCcIFKTVVoK';
+const API_KEY = 'aMrteaxTWyfvObkQcq8C33hHQRuecGKAKT420qn2';
 
 
 const Park = ({ title, parkCode, desc, states, latLong, images, desig}) => {
