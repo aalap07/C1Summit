@@ -206,12 +206,14 @@ function App() {
       <RadioGroup aria-label="position" name="position" value={type} onChange={handleChange} row>
         <FormControlLabel
           value="key"
+          className="radios"
           control={<Radio color="primary" />}
           label="Name"
           labelPlacement="top"
         />
         <FormControlLabel
           value="states"
+          className="radios"
           control={<Radio color="primary" />}
           label="State/Designation"
           labelPlacement="top"
