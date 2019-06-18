@@ -1,7 +1,8 @@
 .App {
   text-align: center;
   background-color: rgba(250, 250, 250, 0.968);
-  
+  overflow-x: hidden;
+  position: relative;
 }
 .search-form{
   min-height:10vh;
@@ -9,9 +10,13 @@
   justify-content:center;
   align-items: center;
 }
+.wrapper{
+  overflow-x: hidden;
+}
 
 @media (min-width:320px) {
   .titleText{
+    
     color: black;
     margin-top: 2%;
     font-size: 210%;

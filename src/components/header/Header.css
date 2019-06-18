@@ -5,7 +5,7 @@
        background-color: black;
        top:0px;
        opacity: 0.85;
-       position: absolute;
+       position: fixed;
        left: 0%;
        height: 10%;
        width: 100%;
@@ -20,7 +20,7 @@
        background-color: black;
        top:0px;
        opacity: 0.85;
-       position: absolute;
+       position: fixed;
        left: 0%;
        height: 10%;
        width: 100%;

@@ -194,8 +194,8 @@ function App() {
   }
 
   return (
-    <div className="App">
 
+    <div className="App">
       <Header />
       <br /><br /><br /><br /><br />
       <h1 className="titleText">Welcome to the National Park Service Kiosk </h1>
