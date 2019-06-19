@@ -88,7 +88,7 @@ function SimpleExpansionPanel({ alerts, parkId, desc, visitors, grounds, article
 
               <p align="left"><strong>{groundsEmpty ? "" : "Nearby Campgrounds"}</strong></p>
               {grounds.map(g => (
-                <p align="left"><li>{g.description}</li></p>
+                <p align="left"><li><strong>{g.name + ": "}</strong>{g.description}</li></p>
               ))}
 
               {eventsEmpty ? "" : <hr />}
@@ -171,7 +171,7 @@ function SimpleExpansionPanel({ alerts, parkId, desc, visitors, grounds, article
               <p align="left"><strong>{(lessonsEmpty ? "" : "Lesson Plans:")}</strong></p>
 
               {lessons.map(l => (
-                <p align="left"><li>{l.questionobjective}</li></p>
+                <p align="left"><li><strong>{l.title + ": "}</strong>{l.questionobjective}</li></p>
               ))}
 
               {lessonsEmpty ? "" : <hr />}
@@ -181,12 +181,12 @@ function SimpleExpansionPanel({ alerts, parkId, desc, visitors, grounds, article
                 <p align="left"><li>{place.listingdescription}</li></p>
               ))}
 
-              {peopleEmpty ? "" : <hr />}
+              {peopleEmpty || placesEmpty ? "" : <hr />}
 
 
               <p align="left"><strong>{(peopleEmpty ? "" : "Relevant People:")}</strong></p>
               {people.map(person => (
-                <p align="left"><li>{person.listingdescription}</li></p>
+                <p align="left"><li><strong>{person.title + ": "}</strong>{person.listingdescription}</li></p>
               ))}
 
                 <p>{lessonsEmpty && placesEmpty && peopleEmpty ? "There is no educational information for this park." : ""}</p>

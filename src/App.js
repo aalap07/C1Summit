@@ -120,19 +120,19 @@ function App() {
     var trailerIndex = query.indexOf("&Q=");
     if (trailerIndex >= 3){
     
-        data.data.map(curr => (
+        data.map(curr => (
           curr.fullName.toUpperCase().includes(query.substring(0,trailerIndex).toUpperCase()) ? array.push(curr) : array = array
         ))
       
     }
     else if (trailerIndex === 2){
       if (deg === "Any"){
-      data.data.map(curr => (
+      data.map(curr => (
         curr.states.toUpperCase().includes(query.substring(0,2).toUpperCase()) ? array.push(curr) : array = array
       ))
       }
       else{
-        data.data.map(curr => (
+        data.map(curr => (
           curr.states.toUpperCase().includes(query.substring(0,2).toUpperCase()) &&  curr.designation === (deg) ? array.push(curr) : array = array
         ))
         }
