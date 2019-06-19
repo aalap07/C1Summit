@@ -37,15 +37,12 @@ class GoogleMapsContainer extends React.Component {
   }
   render() {
 
-
-
-
     const styleDesktop = {
       width: '20vw',
       height: '25vh',
       'marginLeft': 'auto',
       'marginTop': '1%',
-      'marginRight': '77%'
+      'marginRight': '77%',
     }
 
     const styleMobile = {
@@ -53,6 +50,7 @@ class GoogleMapsContainer extends React.Component {
       height: '25vh',
       'marginTop': '60%',
       'marginLeft': '-30%',
+      
     }
 
     return (

@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, fees, events, news, lessons, places, people }) {
+function SimpleExpansionPanel({ alerts, parkId, desc, visitors, grounds, articles, fees, events, news, lessons, places, people, parkCode }) {
   const classes = useStyles();
 
   var alertsEmpty = alerts.length === 0;
@@ -55,6 +55,14 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, fees,
               {fees.map(fee => (
                 <p align="left" > <li>{fee.title}: ${fee.cost.substring(0,fee.cost.indexOf(".")+3)}</li></p>
               ))}
+
+            {feesEmpty ? "" : <hr/>}
+            <p align="left"><strong>Park Data</strong></p>
+            <p align="left">Park Code: {parkCode}</p>
+               
+            <p align="left">Park ID: {parkId}</p>
+
+
             </div>
           </Typography>
         </ExpansionPanelDetails>
@@ -72,7 +80,7 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, fees,
             <div className={style.therePanel}>
             <p align="left"><strong>{centersEmpty ? "" : "Visitor Centers"}</strong></p>
               {visitors.map(v => (
-                <p align="left" > <li>{v.description}</li></p>
+                <p align="left" > <li><strong>{v.name + ": "}</strong>{v.description}</li></p>
               ))}
               
               {groundsEmpty ? "" : <hr/> }
@@ -88,7 +96,8 @@ function SimpleExpansionPanel({ alerts, desc, visitors, grounds, articles, fees,
               <p align="left"><strong>{(eventsEmpty ? "" : "Events")}</strong></p>
               {events.map(eve => (
                 
-                <p align="left"> <li>{eve.description.replace(/(<([^>]+)>)/ig,'')}</li> </p>
+                <p align="left"> <li><strong>{eve.datestart !== eve.dateend ? (eve.datestart + " to " + eve.dateend + ": "): eve.datestart + ": "}</strong>{eve.description.replace(/(<([^>]+)>)/ig,'') }</li></p>
+
               ))}
 
 

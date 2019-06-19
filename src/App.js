@@ -247,6 +247,7 @@ function App() {
         {parks.map(park => (
           <Park
             title={park.fullName}
+            parkId={park.id}
             parkCode={park.parkCode}
             desc={park.description}
             states={park.states}

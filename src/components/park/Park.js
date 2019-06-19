@@ -14,7 +14,7 @@ import Place from '../symbols/sign-white-22.svg';
 const API_KEY = 'aMrteaxTWyfvObkQcq8C33hHQRuecGKAKT420qn2';
 
 
-const Park = ({ title, parkCode, desc, states, latLong, images, desig}) => {
+const Park = ({ title, parkCode, desc, states, latLong, images, desig, parkId}) => {
 
     const [visitors, setVisitors] = useState([]);
     const [fees, setFees] = useState([]);
@@ -224,6 +224,7 @@ const Park = ({ title, parkCode, desc, states, latLong, images, desig}) => {
             <p></p>
             <Panel
                 desc={desc}
+                parkId={parkId}
                 parkCode={parkCode}
                 visitors={visitors}
                 grounds={grounds}
