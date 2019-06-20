@@ -4,9 +4,9 @@
        background-color: black;
        top:0px;
        opacity: 0.85;
-       position: fixed;
+       position: absolute;
        left: 0%;
-       height: 10%;
+       height: 3%;
        width: 100%;
         background-image: url("../../../src/nps.png");
         background-position-x: 50%;
@@ -19,9 +19,9 @@
        background-color: black;
        top:0px;
        opacity: 0.85;
-       position: fixed;
+       position: absolute;
        left: 0%;
-       height: 10%;
+       height: 5%;
        width: 100%;
         background-image: url("../../../src/nps.png");
         background-position-x: 13%;

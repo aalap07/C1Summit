@@ -77,7 +77,6 @@ function App() {
     { label: "Kentucky", value: "KY" },
     { label: "Louisiana", value: "LA" },
     { label: "Maine", value: "ME" },
-    { label: "Marshall Islands", value: "MH" },
     { label: "Maryland", value: "MD" },
     { label: "Massachusetts", value: "MA" },
     { label: "Michigan", value: "MI" },
@@ -177,6 +176,7 @@ function App() {
   //Method used to process the user search
   const getSearch = e => {
     setParks([]);
+    setLim(2);
     e.preventDefault();
     if (search.length < 3 && type === "key") {
       if (search.length === 0) { //User has entered nothing. Alert them
