@@ -16,8 +16,7 @@ function App() {
   const data = require('../src/parks');
   const [type, setType] = useState('key');
   const [deg, setDeg] = useState("Any");
-
-
+  const [lim, setLim] = useState(2);
 
   const designations = [
     { label: "Any", value: "Any" },
@@ -118,42 +117,42 @@ function App() {
     setParks([]);
     var array = [];
     var trailerIndex = query.indexOf("&Q=");
-    if (trailerIndex >= 3){
-    
-        data.map(curr => (
-          curr.fullName.toUpperCase().includes(query.substring(0,trailerIndex).toUpperCase()) ? array.push(curr) : array = array
-        ))
-      
-    }
-    else if (trailerIndex === 2){
-      if (deg === "Any"){
+    if (trailerIndex >= 3) {
+
       data.map(curr => (
-        curr.states.toUpperCase().includes(query.substring(0,2).toUpperCase()) ? array.push(curr) : array = array
+        curr.fullName.toUpperCase().includes(query.substring(0, trailerIndex).toUpperCase()) ? array.push(curr) : array = array
       ))
-      }
-      else{
+
+    }
+    else if (trailerIndex === 2) {
+      if (deg === "Any") {
         data.map(curr => (
-          curr.states.toUpperCase().includes(query.substring(0,2).toUpperCase()) &&  curr.designation === (deg) ? array.push(curr) : array = array
+          curr.states.toUpperCase().includes(query.substring(0, 2).toUpperCase()) ? array.push(curr) : array = array
         ))
-        }
-      }
-    
-      count = array.length;
-      if (count == 0 && query !== "NULL") {
-        if (trailerIndex !== 2){
-          window.alert("There are no results for " + query.substring(0,query.indexOf("&Q=")) + ".");
-          setSearch('');
-        }
-        else{
-          window.alert("There are no results for " + query.substring(0,query.indexOf("&Q=")) + " with designation " + deg + ".");
-        }
       }
       else {
-        setParks(array);
-        //setDeg("Any");
+        data.map(curr => (
+          curr.states.toUpperCase().includes(query.substring(0, 2).toUpperCase()) && curr.designation === (deg) ? array.push(curr) : array = array
+        ))
       }
+    }
+
+    count = array.length;
+    if (count == 0 && query !== "NULL") {
+      if (trailerIndex !== 2) {
+        window.alert("There are no results for " + query.substring(0, query.indexOf("&Q=")) + ".");
+        setSearch('');
+      }
+      else {
+        window.alert("There are no results for " + query.substring(0, query.indexOf("&Q=")) + " with designation " + deg + ".");
+      }
+    }
+    else {
+      setParks(array);
+      //setDeg("Any");
+    }
   }
-  
+
   const stateChange = selectedOption => {
     setSearch(selectedOption.value);
   };
@@ -184,7 +183,7 @@ function App() {
       var trailer = "&Q=" + Math.random() * 10 + 1;
       setQuery(search + trailer);
       setParks([]);
-     }
+    }
   }
 
   function handleChange(event) {
@@ -192,6 +191,11 @@ function App() {
     setDeg("Any");
     setType(event.target.value);
   }
+
+  function getMore() {
+    setLim(lim+2);
+  }
+
 
   return (
 
@@ -201,70 +205,67 @@ function App() {
       <h1 className="titleText">Welcome to the National Park Service Kiosk </h1>
 
       <form onSubmit={getSearch} className="search-form">
-        
-      <FormControl component="fieldset">
-      <RadioGroup aria-label="position" name="position" value={type} onChange={handleChange} row>
-        <FormControlLabel
-          value="key"
-          className="radios"
-          control={<Radio color="primary" />}
-          label="Name"
-          labelPlacement="top"
-        />
-        <FormControlLabel
-          value="states"
-          className="radios"
-          control={<Radio color="primary" />}
-          label="State/Designation"
-          labelPlacement="top"
-        />
-      </RadioGroup>
-    </FormControl>
 
-    {type === "key" ? <input className="search-bar" type="text" placeholder="Enter a park name (3+ characters)" value={search} onChange={updateSearch} />
-      : <Select
-      className="state-selector"
-      placeholder="State"
-      options={states}
-      onChange={stateChange}
-    />}
+        <FormControl component="fieldset">
+          <RadioGroup aria-label="position" name="position" value={type} onChange={handleChange} row>
+            <FormControlLabel
+              value="key"
+              className="radios"
+              control={<Radio color="primary" />}
+              label="Name"
+              labelPlacement="top"
+            />
+            <FormControlLabel
+              value="states"
+              className="radios"
+              control={<Radio color="primary" />}
+              label="State/Designation"
+              labelPlacement="top"
+            />
+          </RadioGroup>
+        </FormControl>
 
-    {type !== "key"? <Select
-      className="state-selector"
-      placeholder="Designation"
-      options={designations}
-      onChange={degChange}
-    /> : ""}
+        {type === "key" ? <input className="search-bar" type="text" placeholder="Enter a park name (3+ characters)" value={search} onChange={updateSearch} />
+          : <Select
+            className="state-selector"
+            placeholder="State"
+            options={states}
+            onChange={stateChange}
+          />}
+
+        {type !== "key" ? <Select
+          className="state-selector"
+          placeholder="Designation (Default is any)"
+          options={designations}
+          onChange={degChange}
+        /> : ""}
 
         <button className="search-button" type="submit">Search</button>
       </form>
-     { query !== 'NULL' && query !== '' ?  <p>Showing results for {query.substring(0,query.indexOf("&Q="))}</p> : ""}
-     
+      {query !== 'NULL' && query !== '' ? <p>Showing results for {query.substring(0, query.indexOf("&Q="))}</p> : ""}
 
-    <ErrorBoundary> 
 
-      <div className="parks">
-        {parks.map(park => (
-          <Park
-            title={park.fullName}
-            parkId={park.id}
-            parkCode={park.parkCode}
-            desc={park.description}
-            states={park.states}
-            images={park.images}
-            latLong={park.latLong}
-            desig={park.designation}
-          />
-        ))}
-
-      </div>
-      </ErrorBoundary> 
+      <ErrorBoundary>
+        <div className="parks">
+          {parks.slice(0, lim).map(park => (
+            <Park
+              title={park.fullName}
+              parkId={park.id}
+              parkCode={park.parkCode}
+              desc={park.description}
+              states={park.states}
+              images={park.images}
+              latLong={park.latLong}
+              desig={park.designation}
+            />
+          ))}
+        </div>
+      </ErrorBoundary>
+      {parks.length > lim ? <button className="more-button" onClick={getMore}>Show more ({parks.length - lim} left)</button> : ""}
 
     </div>
   );
 
 }
-
-
 
 export default App;

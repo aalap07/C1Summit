@@ -11,7 +11,7 @@ import Visitor from '../symbols/visitor-center-white-22.svg';
 import News from '../symbols/newspaper-white-22.svg';
 import Place from '../symbols/sign-white-22.svg';
 
-const API_KEY = 'aMrteaxTWyfvObkQcq8C33hHQRuecGKAKT420qn2';
+const API_KEY = 'ddC5geLnts1U91OLj6Ov2xrCAtVWtui9bWUZSTxx';
 
 
 const Park = ({ title, parkCode, desc, states, latLong, images, desig, parkId}) => {
@@ -188,14 +188,13 @@ const Park = ({ title, parkCode, desc, states, latLong, images, desig, parkId}) 
             {desig !== "" ? 
             <h4 className={style.designationLabel}>Designation: {desig}</h4>
             : ""}
-
-            
+    
             <div className={style.symbols}>
-                <div className={style.symbolItem}>  {alerts.length !==0 ? <img src = {Alert} title="There are alerts for this park"/> : <br/>} </div>
-                <div className={style.symbolItem}> {events.length !==0 ? <img src = {Event}/> : <br/>}</div>
-                <div className={style.symbolItem}>{visitors.length !==0 ? <img src = {Visitor}/> : <br/>}</div>
-                <div className={style.symbolItem}> {news.length !==0 ? <img src = {News}/> : <br/>}</div>
-                <div className={style.symbolItem}>{places.length !==0 ? <img src = {Place}/> : <br/>}</div>
+                <div className={style.symbolItem}>  {alerts.length !==0 ? <img src = {Alert} title="There are alerts for this park"/> : ""} </div>
+                <div className={style.symbolItem}> {events.length !==0 ? <img src = {Event}/> : ""}</div>
+                <div className={style.symbolItem}>{visitors.length !==0 ? <img src = {Visitor}/> : ""}</div>
+                <div className={style.symbolItem}> {news.length !==0 ? <img src = {News}/> : ""}</div>
+                <div className={style.symbolItem}>{places.length !==0 ? <img src = {Place}/> : ""}</div>
 
             </div>
 
@@ -243,13 +242,6 @@ const Park = ({ title, parkCode, desc, states, latLong, images, desig, parkId}) 
         </div>
         </ErrorBoundary>
     );
-}
-
-function handleClick(e, parkCode, dir) {
-    e.preventDefault();
-    var win = window.open(`${dir}`, '_blank');
-    win.focus();
-
 }
 
 export default Park;
