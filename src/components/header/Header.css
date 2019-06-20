@@ -1,7 +1,6 @@
 
   @media (min-width:320px) {
-   .Header .App_header {
-      
+   .Header {
        background-color: black;
        top:0px;
        opacity: 0.85;
@@ -16,7 +15,7 @@
      }
 }
   @media (min-width:800px) {
-   .Header .App_header {
+   .Header {
        background-color: black;
        top:0px;
        opacity: 0.85;

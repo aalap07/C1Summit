@@ -10,14 +10,21 @@ import Select from 'react-select';
 import ErrorBoundary from './components/error/ErrorBoundary';
 
 function App() {
+  //Sets various state variables using hooks for park properties 
   const [parks, setParks] = useState([]);
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('NULL');
-  const data = require('../src/parks');
   const [type, setType] = useState('key');
   const [deg, setDeg] = useState("Any");
   const [lim, setLim] = useState(2);
 
+  /*
+  All park data has been taken and stored as a local json for efficiency. In an event
+  where new park data is added, this data can also be pulled with an API call.
+  */
+  const data = require('../src/parks');
+
+  //Array of designations to use for drop down
   const designations = [
     { label: "Any", value: "Any" },
     { label: "National Battlefield", value: "National Battlefield" },
@@ -46,6 +53,7 @@ function App() {
     { label: "National Wild & Scenic Rivers System", value: "National Wild & Scenic Rivers System" },
   ];
 
+  //Array of states and territories to use for drop down
   const states = [
     { label: "Alabama", value: "AL" },
     { label: "Alaska", value: "AK" },
@@ -108,38 +116,39 @@ function App() {
     { label: "Wyoming", value: "WY" },
   ];
 
+  //Upon every render, we want to get the data with respect to query
   useEffect(() => {
     getData();
   }, [query])
 
-  var count = -1;
-  const getData = async () => {
-    setParks([]);
-    var array = [];
-    var trailerIndex = query.indexOf("&Q=");
-    if (trailerIndex >= 3) {
 
-      data.map(curr => (
+  var count = -1;
+
+  //Method used to get matches
+  const getData = async () => {
+    setParks([]); //Sets parks to empty array to clear all entries
+    var array = []; //Temp array
+    var trailerIndex = query.indexOf("&Q="); //Index of appended string used as unique identifier
+    if (trailerIndex >= 3) { //If index is greater than or equal to 3, we know it was a name search
+      data.map(curr => ( //Adds all matches to temp array
         curr.fullName.toUpperCase().includes(query.substring(0, trailerIndex).toUpperCase()) ? array.push(curr) : array = array
       ))
-
     }
-    else if (trailerIndex === 2) {
-      if (deg === "Any") {
+    else if (trailerIndex === 2) { //If the index is two, we know it was a state search
+      if (deg === "Any") { //Add all matches with the state if designation is any
         data.map(curr => (
           curr.states.toUpperCase().includes(query.substring(0, 2).toUpperCase()) ? array.push(curr) : array = array
         ))
       }
-      else {
+      else { //Otherwise, we want to add all matches with that state and designation
         data.map(curr => (
           curr.states.toUpperCase().includes(query.substring(0, 2).toUpperCase()) && curr.designation === (deg) ? array.push(curr) : array = array
         ))
       }
     }
-
     count = array.length;
-    if (count == 0 && query !== "NULL") {
-      if (trailerIndex !== 2) {
+    if (count == 0 && query !== "NULL") { //If the array has no matches and the query is not the initial one
+      if (trailerIndex !== 2) { //We want to tell the user there have been no matches and reset the search
         window.alert("There are no results for " + query.substring(0, query.indexOf("&Q=")) + ".");
         setSearch('');
       }
@@ -148,66 +157,71 @@ function App() {
       }
     }
     else {
-      setParks(array);
-      //setDeg("Any");
+      setParks(array); //Otherwise, we set parks to the temp array with the matches
     }
   }
 
+  //Method used to handle a change in the states dropdown
   const stateChange = selectedOption => {
     setSearch(selectedOption.value);
   };
 
+  //Method used to handle a change in the designation dropdown
   const degChange = selectedOption => {
     setDeg(selectedOption.value);
   };
 
-
+  //Method used to set the search to the value in the search box upon hitting search
   const updateSearch = e => {
     const toSet = e.target.value;
     setSearch(toSet);
   }
 
+  //Method used to process the user search
   const getSearch = e => {
     setParks([]);
     e.preventDefault();
     if (search.length < 3 && type === "key") {
-      if (search.length === 0) {
+      if (search.length === 0) { //User has entered nothing. Alert them
         window.alert("Please enter a valid search.");
       }
-      else {
+      else { //User search has not entered enough characters
         window.alert("Your search must be at least 3 characters.");
       }
-      setSearch("");
+      setSearch(""); //Reset search to make them try again 
     }
     else {
+      //Otherwise, we can append a unique value to the search and set it to query
+      //The trailer is used to make sure that two consecutive queries are never identical
+      //This ensures that the page does refresh every time
       var trailer = "&Q=" + Math.random() * 10 + 1;
       setQuery(search + trailer);
       setParks([]);
     }
   }
 
-  function handleChange(event) {
+  //Method used to handle a change in the search type. Resets search and deg and changes type appropriately
+  function handleRadioChange(event) {
     setSearch("");
     setDeg("Any");
     setType(event.target.value);
   }
 
+  //Method called when show more button is clicked. Increments limit by 2
   function getMore() {
-    setLim(lim+2);
+    setLim(lim + 2);
   }
 
-
   return (
-
     <div className="App">
       <Header />
       <br /><br /><br /><br /><br />
       <h1 className="titleText">Welcome to the National Park Service Kiosk </h1>
 
       <form onSubmit={getSearch} className="search-form">
-
+        {/* Radio button form for search type */}
         <FormControl component="fieldset">
-          <RadioGroup aria-label="position" name="position" value={type} onChange={handleChange} row>
+          <RadioGroup aria-label="position" name="position" value={type} onChange={handleRadioChange} row>
             <FormControlLabel
               value="key"
               className="radios"
@@ -225,6 +239,7 @@ function App() {
           </RadioGroup>
         </FormControl>
 
+        {/* Chooses what to render based on user choice from radio button */}
         {type === "key" ? <input className="search-bar" type="text" placeholder="Enter a park name (3+ characters)" value={search} onChange={updateSearch} />
           : <Select
             className="state-selector"
@@ -232,7 +247,6 @@ function App() {
             options={states}
             onChange={stateChange}
           />}
-
         {type !== "key" ? <Select
           className="state-selector"
           placeholder="Designation (Default is any)"
@@ -242,9 +256,11 @@ function App() {
 
         <button className="search-button" type="submit">Search</button>
       </form>
+      {/* Text that shows user what they searched for */}
       {query !== 'NULL' && query !== '' ? <p>Showing results for {query.substring(0, query.indexOf("&Q="))}</p> : ""}
 
 
+      {/* Goes through the parks from 0 to lim and creates a park object for them, causing them to render */}
       <ErrorBoundary>
         <div className="parks">
           {parks.slice(0, lim).map(park => (
@@ -261,11 +277,10 @@ function App() {
           ))}
         </div>
       </ErrorBoundary>
+      {/* If there are more parks not being shown, show the show more button */}
       {parks.length > lim ? <button className="more-button" onClick={getMore}>Show more ({parks.length - lim} left)</button> : ""}
-
     </div>
   );
-
 }
 
 export default App;

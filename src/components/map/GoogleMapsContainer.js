@@ -2,10 +2,10 @@ import React from 'react';
 import Media from 'react-media';
 import { GoogleApiWrapper, InfoWindow, Map, Marker } from 'google-maps-react';
 
-
+//API key for google maps to be used
 const API = "AIzaSyB9Kqn59pkizr4_mHqO8D2EsqP1j73i-zI";
-class GoogleMapsContainer extends React.Component {
 
+class GoogleMapsContainer extends React.Component {
 
   constructor(props) {
     super(props);
@@ -16,7 +16,6 @@ class GoogleMapsContainer extends React.Component {
       latV: props.lat,
       longV: props.long
     }
-
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClick = this.onMapClick.bind(this);
   }
@@ -35,8 +34,10 @@ class GoogleMapsContainer extends React.Component {
       });
     }
   }
+
   render() {
 
+    {/* Two different map styles based on side of screen */ }
     const styleDesktop = {
       width: '20vw',
       height: '25vh',
@@ -50,13 +51,10 @@ class GoogleMapsContainer extends React.Component {
       height: '25vh',
       'marginTop': '60%',
       'marginLeft': '-30%',
-      
     }
 
     return (
-
-
-
+      //Render the map with the appropriate style based on device width 
       <Media query="(max-width: 800px)">
         {matches =>
           matches ? (
@@ -96,15 +94,6 @@ class GoogleMapsContainer extends React.Component {
             )
         }
       </Media>
-
-
-
-
-
-
-
-
-
     );
   }
 }
