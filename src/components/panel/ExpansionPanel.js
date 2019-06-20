@@ -115,7 +115,7 @@ function SimpleExpansionPanel({ alerts, parkId, desc, visitors, grounds, article
               {/* Provides info on alerts, the top 5 articles, and news */}
               <p align="left"><strong>Alerts:</strong></p>
               {alerts.map(a => (
-                <p align="left"><li>{a.description}</li></p>
+                <p align="left"><li><strong>{a.title + ": "}</strong>{a.description}</li></p>
               ))}
               <p align="left">{(alertsEmpty ? "There are no alerts!" : "")}</p>
 

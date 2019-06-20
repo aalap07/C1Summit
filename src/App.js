@@ -65,7 +65,6 @@ function App() {
     { label: "Connecticut", value: "CT" },
     { label: "Delaware", value: "DE" },
     { label: "District of Columbia", value: "DC" },
-    { label: "Federated States of Micronesia", value: "FM" },
     { label: "Florida", value: "FL" },
     { label: "Georgia", value: "GA" },
     { label: "Guam", value: "GU" },
@@ -98,7 +97,6 @@ function App() {
     { label: "Ohio", value: "OH" },
     { label: "Oklahoma", value: "OK" },
     { label: "Oregon", value: "OR" },
-    { label: "Palau", value: "PW" },
     { label: "Pennsylvania", value: "PA" },
     { label: "Puerto Rico", value: "PR" },
     { label: "Rhode Island", value: "RI" },
@@ -120,7 +118,6 @@ function App() {
   useEffect(() => {
     getData();
   }, [query])
-
 
   var count = -1;
 
@@ -191,12 +188,18 @@ function App() {
       setSearch(""); //Reset search to make them try again 
     }
     else {
+      if (search.length < 2){
+        window.alert("Please enter a state.");
+        setSearch("");
+      }
+      else{
       //Otherwise, we can append a unique value to the search and set it to query
       //The trailer is used to make sure that two consecutive queries are never identical
       //This ensures that the page does refresh every time
       var trailer = "&Q=" + Math.random() * 10 + 1;
       setQuery(search + trailer);
       setParks([]);
+      }
     }
   }
 
