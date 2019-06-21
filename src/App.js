@@ -219,7 +219,6 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
       <br /><br /><br /><br /><br />
       <h1 className="titleText">Welcome to the National Park Service Kiosk </h1>
 
@@ -281,6 +280,8 @@ function App() {
             />
           ))}
         </div>
+        <Header />
+
       </ErrorBoundary>
       {/* If there are more parks not being shown, show the show more button */}
       {parks.length > lim ? <button className="more-button" onClick={getMore}>Show more ({parks.length - lim} left)</button> : ""}

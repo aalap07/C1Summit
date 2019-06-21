@@ -12,7 +12,7 @@ import News from '../symbols/newspaper-white-22.svg';
 import Place from '../symbols/sign-white-22.svg';
 
 //Sets API key for use throughout the file
-const API_KEY = 'ddC5geLnts1U91OLj6Ov2xrCAtVWtui9bWUZSTxx';
+const API_KEY = 'BQIA5axx9zYGzh0G33NrpBU3knFkhHz7T5Rj14qH';
 
 const Park = ({ title, parkCode, desc, states, latLong, images, desig, parkId }) => {
 
