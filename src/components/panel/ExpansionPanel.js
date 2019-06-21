@@ -95,6 +95,8 @@ function SimpleExpansionPanel({ alerts, parkId, desc, visitors, grounds, article
               {events.map(eve => (
                 <p align="left"> <li><strong>{eve.datestart !== eve.dateend ? (eve.datestart + " to " + eve.dateend + ": ") : eve.datestart + ": "}</strong>{eve.description.replace(/(<([^>]+)>)/ig, '')}</li></p>
               ))}
+
+              {centersEmpty && groundsEmpty && eventsEmpty ? "There is no information available.": ""}
             </div>
           </Typography>
         </ExpansionPanelDetails>
