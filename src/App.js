@@ -51,6 +51,8 @@ function App() {
     { label: "National Heritage Area", value: "National Heritage Area" },
     { label: "National Trails System", value: "National Trails System" },
     { label: "National Wild & Scenic Rivers System", value: "National Wild & Scenic Rivers System" },
+    { label: "Other", value: "Park" },
+
   ];
 
   //Array of states and territories to use for drop down
