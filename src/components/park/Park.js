@@ -31,132 +31,130 @@ const Park = ({ title, parkCode, desc, states, latLong, images, desig, parkId })
 
     //The next section of functions are API calls for the different park properties
     const getArticleData = async () => {
-            const response = await fetch(`https://developer.nps.gov/api/v1/articles?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
-            if (response.type === "cors"){
-                window.location.reload();
-            }
-            else{
+        const response = await fetch(`https://developer.nps.gov/api/v1/articles?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
+        if (response.status === 429) {
+            window.location.reload();
+        }
+        else {
             const data = await response.json();
             setArticles(data.data);
-            }
-        
+        }
+
     }
 
     const getVisitorData = async () => {
-            const response = await fetch(`https://developer.nps.gov/api/v1/visitorcenters?parkCode=${parkCode}&limit=10&api_key=${API_KEY}`);
-            if (response.type === "cors"){
-             window.location.reload(); 
-
-            }
-            else{
+        const response = await fetch(`https://developer.nps.gov/api/v1/visitorcenters?parkCode=${parkCode}&limit=10&api_key=${API_KEY}`);
+        if (response.status === 429) {
+            window.alert("The API request limit has been exceeded. Please contact the developer or try again in 1 hour.");
+            window.location.reload();
+            
+        }
+        else {
             const data = await response.json();
             setVisitors(data.data);
-            }
-       
+        }
+
 
     }
 
     const getAlertData = async () => {
-            const response = await fetch(`https://developer.nps.gov/api/v1/alerts?parkCode=${parkCode}&limit=10&api_key=${API_KEY}`);
-            if (response.type === "cors"){
-               window.location.reload(); 
+        const response = await fetch(`https://developer.nps.gov/api/v1/alerts?parkCode=${parkCode}&limit=10&api_key=${API_KEY}`);
+        if (response.status === 429) {
+            window.location.reload();
 
-            }
-            else{
+        }
+        else {
             const data = await response.json();
             setAlerts(data.data);
-            }
-       
+        }
+
 
     }
 
     const getGroundsData = async () => {
-            const response = await fetch(`https://developer.nps.gov/api/v1/campgrounds?parkCode=${parkCode}&limit=10&api_key=${API_KEY}`);
-            if (response.type === "cors"){
-                window.location.reload();
-            }
-            else{
+        const response = await fetch(`https://developer.nps.gov/api/v1/campgrounds?parkCode=${parkCode}&limit=10&api_key=${API_KEY}`);
+        if (response.status === 429) {
+            window.location.reload();
+        }
+        else {
             const data = await response.json();
             setGrounds(data.data);
-            }
-       
+        }
+
 
     }
 
     const getEventsData = async () => {
-            const response = await fetch(`https://developer.nps.gov/api/v1/events?parkCode=${parkCode}&limit=2&api_key=${API_KEY}`);
-            if (response.type === "cors"){
-             window.location.reload(); 
-            }
-            else{
+        const response = await fetch(`https://developer.nps.gov/api/v1/events?parkCode=${parkCode}&limit=2&api_key=${API_KEY}`);
+        if (response.status === 429) {
+            window.location.reload();
+        }
+        else {
             const data = await response.json();
             setEvents(data.data);
-            }
-        
+        }
+
 
     }
 
     const getNewsData = async () => {
-            const response = await fetch(`https://developer.nps.gov/api/v1/news?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
-            if (response.type === "cors"){
-               window.location.reload(); 
-            }
-            else{
+        const response = await fetch(`https://developer.nps.gov/api/v1/news?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
+        if (response.status === 429) {
+            window.location.reload();
+        }
+        else {
             const data = await response.json();
             setNews(data.data);
-            }
-       
+        }
+
 
     }
 
     const getLessonsData = async () => {
-            const response = await fetch(`https://developer.nps.gov/api/v1/lessonplans?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
-            if (response.type === "cors"){
+        const response = await fetch(`https://developer.nps.gov/api/v1/lessonplans?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
+        if (response.status === 429) {
             window.location.reload();
-            }
-            else{
+        }
+        else {
             const data = await response.json();
             setLessons(data.data);
-            }
-        
+        }
+
 
     }
 
     const getPlacesData = async () => {
-            const response = await fetch(`https://developer.nps.gov/api/v1/places?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
-            if (response.type === "cors"){
-               window.location.reload(); 
-            }
-            else{
+        const response = await fetch(`https://developer.nps.gov/api/v1/places?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
+        if (response.status === 429) {
+            window.location.reload();
+        }
+        else {
             const data = await response.json();
             setPlaces(data.data);
-            }
-        
-
+        }
     }
 
     const getPeopleData = async () => {
-            const response = await fetch(`https://developer.nps.gov/api/v1/people?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
-            if (response.type === "cors"){
-             window.location.reload(); 
-            }
-            else{
+        const response = await fetch(`https://developer.nps.gov/api/v1/people?parkCode=${parkCode}&limit=5&api_key=${API_KEY}`);
+        if (response.status === 429) {
+            window.location.reload();
+        }
+        else {
             const data = await response.json();
             setPeople(data.data);
-            }
-        
+        }
 
     }
 
     const getFeesData = async () => {
-            const response = await fetch(`https://developer.nps.gov/api/v1/parks?parkCode=${parkCode}&limit=5&start=0&fields=entranceFees&api_key=${API_KEY}`);
-            if (response.type === "cors"){
-                window.location.reload();
-            }
-            else{
-                const data = await response.json();
-                setFees(data.data[0].entranceFees);
-            }
+        const response = await fetch(`https://developer.nps.gov/api/v1/parks?parkCode=${parkCode}&limit=5&start=0&fields=entranceFees&api_key=${API_KEY}`);
+        if (response.status === 429) {
+            window.location.reload();
+        }
+        else {
+            const data = await response.json();
+            setFees(data.data[0].entranceFees);
+        }
     }
 
     //We want these functions to run at each render
@@ -198,14 +196,14 @@ const Park = ({ title, parkCode, desc, states, latLong, images, desig, parkId })
                 <h2 className={style.head}>{title}</h2>
                 {desig !== "" ?
                     <h4 className={style.designationLabel}>Designation: {desig}</h4>
-                    : <div> <br/><br/></div>}
+                    : <div> <br /><br /></div>}
 
                 <div className={style.symbols}>
-                    { alerts.length !== 0 ? <div className={style.symbolItem}>  <img src={Alert} /> </div> : ""}
-                    { events.length !== 0 ? <div className={style.symbolItem}>  <img src={Event} /> </div> : ""}
-                    { visitors.length !== 0 ? <div className={style.symbolItem}>  <img src={Visitor} /> </div> : ""}
-                    { news.length !== 0 ? <div className={style.symbolItem}>  <img src={News} /> </div> : ""}
-                    { places.length !== 0 ? <div className={style.symbolItem}>  <img src={Place} /> </div> : ""}
+                    {alerts.length !== 0 ? <div className={style.symbolItem}>  <img src={Alert} /> </div> : ""}
+                    {events.length !== 0 ? <div className={style.symbolItem}>  <img src={Event} /> </div> : ""}
+                    {visitors.length !== 0 ? <div className={style.symbolItem}>  <img src={Visitor} /> </div> : ""}
+                    {news.length !== 0 ? <div className={style.symbolItem}>  <img src={News} /> </div> : ""}
+                    {places.length !== 0 ? <div className={style.symbolItem}>  <img src={Place} /> </div> : ""}
                 </div>
 
                 <div className={style.mapIcon}>
