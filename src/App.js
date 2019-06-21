@@ -17,6 +17,7 @@ function App() {
   const [type, setType] = useState('key');
   const [deg, setDeg] = useState("Any");
   const [lim, setLim] = useState(2);
+  const [desigs, setDesigs] = useState([]);
 
   /*
   All park data has been taken and stored as a local json for efficiency. In an event
@@ -24,36 +25,37 @@ function App() {
   */
   const data = require('../src/parks');
 
-  //Array of designations to use for drop down
-  const designations = [
-    { label: "Any", value: "Any" },
-    { label: "National Battlefield", value: "National Battlefield" },
-    { label: "National Battlefield Park", value: "National Battlefield Park" },
-    { label: "National Battlefield Site", value: "National Battlefield Site" },
-    { label: "National Military Park", value: "National Military Park" },
-    { label: "National Historical Park", value: "National Historical Park" },
-    { label: "National Historic Site", value: "National Historic Site" },
-    { label: "International Historic Site", value: "International Historic Site" },
-    { label: "National Lakeshore", value: "National Lakeshore" },
-    { label: "National Memorial", value: "National Memorial" },
-    { label: "National Monument", value: "National Monument" },
-    { label: "National Park", value: "National Park" },
-    { label: "National Parkway", value: "National Parkway" },
-    { label: "National Preserve", value: "National Preserve" },
-    { label: "National Reserve", value: "National Reserve" },
-    { label: "National Recreation Area", value: "National Recreation Area" },
-    { label: "National River", value: "National River" },
-    { label: "National Wild and Scenic River", value: "National Wild and Scenic River" },
-    { label: "National Wild and Scenic Riverway", value: "National Wild and Scenic Riverway" },
-    { label: "National Scenic Trail", value: "National Scenic Trail" },
-    { label: "National Seashore", value: "National Seashore" },
-    { label: "Affiliated Area", value: "Affiliated Area" },
-    { label: "National Heritage Area", value: "National Heritage Area" },
-    { label: "National Trails System", value: "National Trails System" },
-    { label: "National Wild & Scenic Rivers System", value: "National Wild & Scenic Rivers System" },
-    { label: "Other", value: "Park" },
+  // //Array of designations to use for drop down
+  // var designations = [
 
-  ];
+  //   { label: "Any", value: "Any" },
+  //   { label: "National Battlefield", value: "National Battlefield" },
+  //   { label: "National Battlefield Park", value: "National Battlefield Park" },
+  //   { label: "National Battlefield Site", value: "National Battlefield Site" },
+  //   { label: "National Military Park", value: "National Military Park" },
+  //   { label: "National Historical Park", value: "National Historical Park" },
+  //   { label: "National Historic Site", value: "National Historic Site" },
+  //   { label: "International Historic Site", value: "International Historic Site" },
+  //   { label: "National Lakeshore", value: "National Lakeshore" },
+  //   { label: "National Memorial", value: "National Memorial" },
+  //   { label: "National Monument", value: "National Monument" },
+  //   { label: "National Park", value: "National Park" },
+  //   { label: "National Parkway", value: "National Parkway" },
+  //   { label: "National Preserve", value: "National Preserve" },
+  //   { label: "National Reserve", value: "National Reserve" },
+  //   { label: "National Recreation Area", value: "National Recreation Area" },
+  //   { label: "National River", value: "National River" },
+  //   { label: "National Wild and Scenic River", value: "National Wild and Scenic River" },
+  //   { label: "National Wild and Scenic Riverway", value: "National Wild and Scenic Riverway" },
+  //   { label: "National Scenic Trail", value: "National Scenic Trail" },
+  //   { label: "National Seashore", value: "National Seashore" },
+  //   { label: "Affiliated Area", value: "Affiliated Area" },
+  //   { label: "National Heritage Area", value: "National Heritage Area" },
+  //   { label: "National Trails System", value: "National Trails System" },
+  //   { label: "National Wild & Scenic Rivers System", value: "National Wild & Scenic Rivers System" },
+  //   { label: "Other", value: "Park" },
+
+  // ];
 
   //Array of states and territories to use for drop down
   const states = [
@@ -122,6 +124,8 @@ function App() {
 
   var count = -1;
 
+
+
   //Method used to get matches
   const getData = async () => {
     setParks([]); //Sets parks to empty array to clear all entries
@@ -162,7 +166,20 @@ function App() {
   //Method used to handle a change in the states dropdown
   const stateChange = selectedOption => {
     setSearch(selectedOption.value);
+    var tempDegs = [];
+    data.map(curr => (
+      (curr.designation !== "" && curr.states.includes(selectedOption.value)) ? tempDegs.push({ label: curr.designation, value: curr.designation }
+      ) : tempDegs = tempDegs
+    ))
+    tempDegs = Array.from(new Set(tempDegs.map(JSON.stringify)), JSON.parse)
+    tempDegs.sort();
+    if(tempDegs.length === 0){
+      tempDegs.push({ label: "Any", value: "Any" });
+    }
+      setDesigs(tempDegs);
+    
   };
+
 
   //Method used to handle a change in the designation dropdown
   const degChange = selectedOption => {
@@ -190,17 +207,17 @@ function App() {
       setSearch(""); //Reset search to make them try again 
     }
     else {
-      if (search.length < 2){
+      if (search.length < 2) {
         window.alert("Please enter a state.");
         setSearch("");
       }
-      else{
-      //Otherwise, we can append a unique value to the search and set it to query
-      //The trailer is used to make sure that two consecutive queries are never identical
-      //This ensures that the page does refresh every time
-      var trailer = "&Q=" + Math.random() * 10 + 1;
-      setQuery(search + trailer);
-      setParks([]);
+      else {
+        //Otherwise, we can append a unique value to the search and set it to query
+        //The trailer is used to make sure that two consecutive queries are never identical
+        //This ensures that the page does refresh every time
+        var trailer = "&Q=" + Math.random() * 10 + 1;
+        setQuery(search + trailer);
+        setParks([]);
       }
     }
   }
@@ -254,7 +271,7 @@ function App() {
         {type !== "key" ? <Select
           className="state-selector"
           placeholder="Designation (Default is any)"
-          options={designations}
+          options={desigs}
           onChange={degChange}
         /> : ""}
 
