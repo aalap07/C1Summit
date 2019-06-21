@@ -119,9 +119,10 @@ function SimpleExpansionPanel({ alerts, parkId, desc, visitors, grounds, article
               ))}
               <p align="left">{(alertsEmpty ? "There are no alerts!" : "")}</p>
 
-              <hr />
+              {articlesEmpty && newsEmpty ? "" : <hr />}
 
-              <p align="left"><strong>Articles: {(lotsOfArticles ? " (Top 5)" : "")}</strong></p>
+
+              <p align="left"><strong>{articlesEmpty ? "" : "Articles:"} {(lotsOfArticles ? " (Top 5)" : "")}</strong></p>
               {articles.slice(0, 5).map(art => (
                 <p align="left"><li><a href={art.url} target="_blank">{art.title}</a></li></p>
               ))}

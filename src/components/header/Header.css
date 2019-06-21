@@ -9,6 +9,7 @@
        height: 10%;
        width: 100%;
         background-image: url("../../../src/nps.png");
+        background-size: 60%;
         background-position-x: 50%;
         background-position-y: 50%;
         background-repeat: no-repeat;
@@ -24,6 +25,7 @@
        height: 10%;
        width: 100%;
         background-image: url("../../../src/nps.png");
+        background-size: 15%;
         background-position-x: 13%;
         background-position-y: 50%;
         background-repeat: no-repeat;
