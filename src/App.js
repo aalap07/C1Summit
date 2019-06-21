@@ -133,15 +133,13 @@ function App() {
   const stateChange = selectedOption => {
     setSearch(selectedOption.value);
     var tempDegs = [];
+    tempDegs.push({ label: "Any", value: "Any" });
     data.map(curr => (
       (curr.designation !== "" && curr.states.includes(selectedOption.value)) ? tempDegs.push({ label: curr.designation, value: curr.designation }
       ) : tempDegs = tempDegs
     ))
     tempDegs = Array.from(new Set(tempDegs.map(JSON.stringify)), JSON.parse)
-    console.log(tempDegs);
-    if(tempDegs.length === 0){
-      tempDegs.push({ label: "Any", value: "Any" });
-    }
+    
       setDesigs(tempDegs);
   };
 
