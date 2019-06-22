@@ -81,7 +81,8 @@ function SimpleExpansionPanel({ alerts, parkId, desc, visitors, grounds, article
               {visitors.map(v => (
                 <p align="left" > <li><strong>{v.name + ": "}</strong>{v.description}</li></p>
               ))}
-              {groundsEmpty ? "" : <hr />}
+              
+              {centersEmpty ? "" : <hr />}
 
 
               <p align="left"><strong>{groundsEmpty ? "" : "Nearby Campgrounds"}</strong></p>
@@ -89,7 +90,7 @@ function SimpleExpansionPanel({ alerts, parkId, desc, visitors, grounds, article
                 <p align="left"><li><strong>{g.name + ": "}</strong>{g.description}</li></p>
               ))}
 
-              {eventsEmpty ? "" : <hr />}
+              {eventsEmpty || groundsEmpty ? "" : <hr />}
 
               <p align="left"><strong>{(eventsEmpty ? "" : "Events")}</strong></p>
               {events.map(eve => (
