@@ -199,12 +199,13 @@ const Park = ({ title, parkCode, desc, states, latLong, images, desig, parkId })
                     : <div> <br /><br /></div>}
 
                 <div className={style.symbols}>
-                    {alerts.length !== 0 ? <div className={style.symbolItem}>  <img src={Alert} /> </div> : ""}
-                    {events.length !== 0 ? <div className={style.symbolItem}>  <img src={Event} /> </div> : ""}
-                    {visitors.length !== 0 ? <div className={style.symbolItem}>  <img src={Visitor} /> </div> : ""}
-                    {news.length !== 0 ? <div className={style.symbolItem}>  <img src={News} /> </div> : ""}
-                    {places.length !== 0 ? <div className={style.symbolItem}>  <img src={Place} /> </div> : ""}
+                    {alerts.length !== 0 ? <div className={style.symbolItem}>  <img src={Alert} /><p>Alerts</p></div> : ""}
+                    {events.length !== 0 ? <div className={style.symbolItem}>  <img src={Event} />  <p>Events</p></div> : ""}
+                    {visitors.length !== 0 ? <div className={style.symbolItem}>  <img src={Visitor} />  <p>Visit Info</p></div> : ""}
+                    {news.length !== 0 ? <div className={style.symbolItem}>  <img src={News} />  <p>News</p></div> : ""}
+                    {places.length !== 0 ? <div className={style.symbolItem}>  <img src={Place} />  <p>Places</p></div> : ""}
                 </div>
+
 
                 <div className={style.mapIcon}>
                     <FontAwesomeIcon
