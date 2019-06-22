@@ -4,7 +4,6 @@ import Panel from '../panel/ExpansionPanel';
 import GoogleMapsContainer from '../map/GoogleMapsContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
-import ErrorBoundary from '../error/ErrorBoundary';
 import Alert from '../symbols/safety-caution-alerts-white-22.svg';
 import Event from '../symbols/calendar-events-white-22.svg';
 import Visitor from '../symbols/visitor-center-white-22.svg';
@@ -39,7 +38,6 @@ const Park = ({ title, parkCode, desc, states, latLong, images, desig, parkId })
             const data = await response.json();
             setArticles(data.data);
         }
-
     }
 
     const getVisitorData = async () => {
@@ -47,14 +45,12 @@ const Park = ({ title, parkCode, desc, states, latLong, images, desig, parkId })
         if (response.status === 429) {
             window.alert("The API request limit has been exceeded. Please contact the developer or try again in 1 hour.");
             window.location.reload();
-            
+
         }
         else {
             const data = await response.json();
             setVisitors(data.data);
         }
-
-
     }
 
     const getAlertData = async () => {
@@ -67,8 +63,6 @@ const Park = ({ title, parkCode, desc, states, latLong, images, desig, parkId })
             const data = await response.json();
             setAlerts(data.data);
         }
-
-
     }
 
     const getGroundsData = async () => {
@@ -80,8 +74,6 @@ const Park = ({ title, parkCode, desc, states, latLong, images, desig, parkId })
             const data = await response.json();
             setGrounds(data.data);
         }
-
-
     }
 
     const getEventsData = async () => {
@@ -93,8 +85,6 @@ const Park = ({ title, parkCode, desc, states, latLong, images, desig, parkId })
             const data = await response.json();
             setEvents(data.data);
         }
-
-
     }
 
     const getNewsData = async () => {
@@ -106,8 +96,6 @@ const Park = ({ title, parkCode, desc, states, latLong, images, desig, parkId })
             const data = await response.json();
             setNews(data.data);
         }
-
-
     }
 
     const getLessonsData = async () => {
@@ -119,8 +107,6 @@ const Park = ({ title, parkCode, desc, states, latLong, images, desig, parkId })
             const data = await response.json();
             setLessons(data.data);
         }
-
-
     }
 
     const getPlacesData = async () => {
@@ -143,7 +129,6 @@ const Park = ({ title, parkCode, desc, states, latLong, images, desig, parkId })
             const data = await response.json();
             setPeople(data.data);
         }
-
     }
 
     const getFeesData = async () => {
@@ -189,60 +174,58 @@ const Park = ({ title, parkCode, desc, states, latLong, images, desig, parkId })
     var longVal = parseFloat(long, 10);
 
     return (
-        <ErrorBoundary>
-            <div className={style.park}>
-                <br />
-                {/* Displays title, designation, symbols, states, and google map */}
-                <h2 className={style.head}>{title}</h2>
-                {desig !== "" ?
-                    <h4 className={style.designationLabel}>Designation: {desig}</h4>
-                    : <div> <br /><br /></div>}
+        <div className={style.park}>
+            <br />
+            {/* Displays title, designation, symbols, states, and google map */}
+            <h2 className={style.head}>{title}</h2>
+            {desig !== "" ?
+                <h4 className={style.designationLabel}>Designation: {desig}</h4>
+                : <div> <br /><br /></div>}
 
-                <div className={style.symbols}>
-                    {alerts.length !== 0 ? <div className={style.symbolItem}>  <img src={Alert} /><p>Alerts</p></div> : ""}
-                    {events.length !== 0 ? <div className={style.symbolItem}>  <img src={Event} />  <p>Events</p></div> : ""}
-                    {visitors.length !== 0 ? <div className={style.symbolItem}>  <img src={Visitor} />  <p>Visit Info</p></div> : ""}
-                    {news.length !== 0 ? <div className={style.symbolItem}>  <img src={News} />  <p>News</p></div> : ""}
-                    {places.length !== 0 ? <div className={style.symbolItem}>  <img src={Place} />  <p>Places</p></div> : ""}
-                </div>
-
-
-                <div className={style.mapIcon}>
-                    <FontAwesomeIcon
-                        color="white"
-                        icon={faMapMarkerAlt}
-                        size="3x"
-                    />
-                    <div className={style.locLabel}>
-                        <p>{states}</p>
-                    </div>
-                </div>
-                {/* If lat and long are provided, make a google maps container, otherwise, show user */}
-                {latLong !== "" ? <GoogleMapsContainer
-                    lat={latVal}
-                    long={longVal}
-                /> : <p align="right" style={{ color: 'white' }}> Location coordinates not provided by API. </p>}
-                <img className={style.parkImage} src={image} alt="Image" />
-                <br /> <br />
-                <p></p>
-                {/* Creates expansionpanel and passes in all necessary data */}
-                <Panel
-                    desc={desc}
-                    parkId={parkId}
-                    parkCode={parkCode}
-                    visitors={visitors}
-                    grounds={grounds}
-                    alerts={alerts}
-                    articles={articles}
-                    events={events}
-                    news={news}
-                    lessons={lessons}
-                    places={places}
-                    people={people}
-                    fees={fees}
-                />
+            <div className={style.symbols}>
+                {alerts.length !== 0 ? <div className={style.symbolItem}>  <img src={Alert} /><p>Alerts</p></div> : ""}
+                {events.length !== 0 ? <div className={style.symbolItem}>  <img src={Event} />  <p>Events</p></div> : ""}
+                {visitors.length !== 0 ? <div className={style.symbolItem}>  <img src={Visitor} />  <p>Visit Info</p></div> : ""}
+                {news.length !== 0 ? <div className={style.symbolItem}>  <img src={News} />  <p>News</p></div> : ""}
+                {places.length !== 0 ? <div className={style.symbolItem}>  <img src={Place} />  <p>Places</p></div> : ""}
             </div>
-        </ErrorBoundary>
+
+
+            <div className={style.mapIcon}>
+                <FontAwesomeIcon
+                    color="white"
+                    icon={faMapMarkerAlt}
+                    size="3x"
+                />
+                <div className={style.locLabel}>
+                    <p>{states}</p>
+                </div>
+            </div>
+            {/* If lat and long are provided, make a google maps container, otherwise, show user */}
+            {latLong !== "" ? <GoogleMapsContainer
+                lat={latVal}
+                long={longVal}
+            /> : <p align="right" style={{ color: 'white' }}> Location coordinates not provided by API. </p>}
+            <img className={style.parkImage} src={image} alt="Image" />
+            <br /> <br />
+            <p></p>
+            {/* Creates expansionpanel and passes in all necessary data */}
+            <Panel
+                desc={desc}
+                parkId={parkId}
+                parkCode={parkCode}
+                visitors={visitors}
+                grounds={grounds}
+                alerts={alerts}
+                articles={articles}
+                events={events}
+                news={news}
+                lessons={lessons}
+                places={places}
+                people={people}
+                fees={fees}
+            />
+        </div>
     );
 }
 

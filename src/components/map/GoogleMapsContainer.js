@@ -89,7 +89,6 @@ class GoogleMapsContainer extends React.Component {
                   onClick={this.onMarkerClick}
                   position={{ lat: this.state.latV, lng: this.state.longV }}
                 />
-
               </Map>
             )
         }

@@ -7,7 +7,6 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from 'react-select';
-import ErrorBoundary from './components/error/ErrorBoundary';
 
 function App() {
   //Sets various state variables using hooks for park properties 
@@ -90,7 +89,7 @@ function App() {
     getData();
   }, [query])
 
-  var count = -1;
+  var count = -1; //Counter variable representing number of parks. Used in getData()
 
   //Method used to get matches
   const getData = async () => {
@@ -132,17 +131,15 @@ function App() {
   //Method used to handle a change in the states dropdown
   const stateChange = selectedOption => {
     setSearch(selectedOption.value);
-    var tempDegs = [];
-    tempDegs.push({ label: "Any", value: "Any" });
-    data.map(curr => (
+    var tempDegs = []; //Array of designations 
+    tempDegs.push({ label: "Any", value: "Any" }); //Adds any by default
+    data.map(curr => ( //Adds all designations that the selected state has parks with
       (curr.designation !== "" && curr.states.includes(selectedOption.value)) ? tempDegs.push({ label: curr.designation, value: curr.designation }
       ) : tempDegs = tempDegs
     ))
-    tempDegs = Array.from(new Set(tempDegs.map(JSON.stringify)), JSON.parse)
-    
-      setDesigs(tempDegs);
+    tempDegs = Array.from(new Set(tempDegs.map(JSON.stringify)), JSON.parse) //Remove duplicates
+    setDesigs(tempDegs); //Set the list of designations to tempDegs and use it
   };
-
 
   //Method used to handle a change in the designation dropdown
   const degChange = selectedOption => {
@@ -245,7 +242,6 @@ function App() {
 
 
       {/* Goes through the parks from 0 to lim and creates a park object for them, causing them to render */}
-      <ErrorBoundary>
         <div className="parks">
           {parks.slice(0, lim).map(park => (
             <Park
@@ -261,8 +257,6 @@ function App() {
           ))}
         </div>
         <Header />
-
-      </ErrorBoundary>
       {/* If there are more parks not being shown, show the show more button */}
       {parks.length > lim ? <button className="more-button" onClick={getMore}>Show more ({parks.length - lim} left)</button> : ""}
     </div>
