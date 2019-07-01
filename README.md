@@ -1,4 +1,4 @@
-#Overview
+##Overview
 This is a progressive web app created with ReactJS to help users gain access to NPS parks data all in one place.
 
 #User interface
