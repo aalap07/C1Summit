@@ -35,7 +35,5 @@ Following the parks section, the final component is the show more button at the 
 Important information regarding error catching: Each park object in this application makes 10 requests to the API. NPS API caps requests at 1000 per hour, meaning that users will be able to load up to 100 parks per hour. I have implemented an error catching feature which will detect if the API sends back a bad response code for each park render and will notify the user with an alert and immediately reload the page to prevent any memory issues. If this is to happen during testing, please contact me and I will be able to change the API key in the code to allow for further testing. 
 
 ## Screenshots
-![b0e4ada0e318-Things+to+Know](https://user-images.githubusercontent.com/23727170/60465241-a43e2980-9c1e-11e9-86c6-9e29b5c494b5.png)
 ![b0e4ada0e318-Platforms](https://user-images.githubusercontent.com/23727170/60465243-a4d6c000-9c1e-11e9-997f-cd0f2875d4be.png)
 ![b0e4ada0e318-Canyon+example](https://user-images.githubusercontent.com/23727170/60465244-a56f5680-9c1e-11e9-9be0-d29f604b5fa6.png)
-![b0e4ada0e318-iPhone](https://user-images.githubusercontent.com/23727170/60465249-a6a08380-9c1e-11e9-914e-1ddb8cc176c6.png)
